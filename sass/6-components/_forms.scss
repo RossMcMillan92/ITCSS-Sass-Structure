@@ -1,0 +1,87 @@
+fieldset{
+	border: none;
+	padding: 0;
+}
+
+.form--capped{
+	max-width: rem(350px);
+
+	[type=text], button{
+		width: 100%;
+		margin-bottom: rem($base-spacing-unit);
+	}
+}
+
+[type=text]{
+	font-size: rem($input-font-size--default);
+	height: em($input-height, $input-font-size--default);
+	padding: 0 em(20px);
+	border: none;
+
+	&:focus{
+		background-color: #eee;
+		outline: none;
+	}
+}
+
+// RSforms
+.inner-content{
+	.formResponsive{
+		background-color: $palette--grey-light;
+		border: solid 1px $base-ui-color;
+		padding: rem($base-spacing-unit * 2);
+		margin-bottom: rem($base-spacing-unit);
+
+		fieldset{
+			margin-bottom: 0;
+		}
+	}
+		.rsform-block, .inline-form{
+			margin-bottom: rem($base-spacing-unit);
+
+			&:last-of-type{
+				margin-bottom: 0;
+			}
+
+			[type=text], [type=email], textarea{
+				width: 100%;
+				max-width: rem(300px);
+				border: solid 1px rgba(0,0,0,.1);
+			}
+
+			textarea{
+				max-width: none;
+			}
+
+			[type=checkbox], [type=radio]{
+				margin-right: rem($base-spacing-unit / 2);
+
+				+ label {
+					margin-right: rem($base-spacing-unit * 1.5);
+				}
+			}
+		}
+		.formControlLabel{
+			font-size: rem(14px);
+			font-weight: 700;
+			color: $palette--black;
+		}
+
+		.rsform-submit-button{
+			width: 100%;
+			max-width: rem(200px);
+
+			&:after{
+				font-size: rem(20px);			
+			}
+		}
+}
+.formNoError{
+	display: none;
+}
+
+.formDescription{
+	&:empty{
+		display: none;
+	}
+}

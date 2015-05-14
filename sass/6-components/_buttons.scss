@@ -1,0 +1,35 @@
+
+
+.btn{
+
+}
+	.btn--text-icon{
+		&:after, span{
+			position: relative;
+			top: 2px;
+			margin-left: .5rem;
+
+			&:first-child{
+				margin-left: 0;
+				margin-right: .5rem;
+			}
+		}	
+	}
+	.btn--right-text-icon{
+		text-align: left;
+
+		span, &:after{
+			float: right;
+			margin-left: .5rem;
+		}	
+	}
+
+.btn--wide{
+	width: 100%;
+	max-width: rem(300px);
+}
+
+.btn--framed{
+
+}
+
