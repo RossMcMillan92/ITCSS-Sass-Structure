@@ -303,4 +303,4 @@ If you must nest tag selectors within a class, try to minimalise code which you'
   }
 }
 ```
-With the above rule, all links within the .header element. Can you guarantee all links in there should be red? Are some of them green? If so, you will now have to write more code to set some of the other links to green, probably adding in more nested rules causing higher specificity.
+With the above rule, all links within the .header element will be coloured red. Can you guarantee all links in there should be red? Are some of them green? If so, you will now have to write more code to set some of the other links to green, probably adding in more nested rules causing higher specificity.
