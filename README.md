@@ -323,7 +323,7 @@ Classes should be used to style every element where possible. Sass makes it very
   }
 ```
 
-If you must nest tag selectors within a class, try to minimalise code which you'll have to undo later. e.g.
+If you must nest tag selectors within a class, try not to be too broad with specificity like the following:
 ```
 .header{
   a {
