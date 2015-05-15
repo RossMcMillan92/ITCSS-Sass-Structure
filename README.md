@@ -193,7 +193,7 @@ Example rules:
         overflow:hidden;
     }
 ```
-Since we will be reusing certain components/widgets across many sites with different themes, declaring any cosmetic or unnecessary styles here will inevitably be overwritten, causing waste. To avoid this, use this section to make minimal structures that generally won't change and can be extended across multiple widgets/components/sections. These can be further styled to suit the specific component later in a new files in the components section.
+Since we will be reusing certain components/widgets across many sites with different themes, declaring any cosmetic or unnecessary styles here will inevitably be overwritten, causing waste. To avoid this, use this section to make minimal structures that generally won't change and can be extended across multiple widgets/components/sections. These can be further styled to suit the specific component later in a new file in the components section.
 
 In theory, once an object is made here, it should rarely need edited again.
 
@@ -210,7 +210,7 @@ Example Structure:
     _banner.scss
   _puff.scss
   templates
-    _contact.scss
+    _contact-page.scss
 ```
 
 ## 7. Trumps
@@ -220,6 +220,19 @@ Example Structure:
 ```
 7-trumps
   _helper.scss
+  _palette.scss
+```
+
+Example rules: 
+```
+// _palette.scss
+.bg--alpha {
+  background-color: $palette--primary;
+}
+
+.txt--beta {
+  color: $palette--secondary;
+}
 ```
 
 ## Example
