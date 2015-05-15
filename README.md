@@ -151,7 +151,7 @@ h1, h2, h3, h4, h5, h6 {
 ```
 
 ## 5. Objects
-Reusable/extendable objects should be placed here, generally layout structures. **No cosmetic styling** should go in here.
+Reusable/extendable objects should be placed here, generally layout structures. **No cosmetic styling** should go in here. When looking through a design, try to spot layout patterns being reused (even if they don't look the same aesthetically) and build them here. Modify the look of these seperately later in the components section (see [my example](#example) below). 
 
 Example Structure:
 ```
@@ -186,3 +186,34 @@ Since we will be reusing certain components/widgets across many sites with diffe
 In theory, once an object is made here, it should rarely need edited again.
 
 
+## 6. Components
+Chunks of UI styling go here. This section may grow quite large depending on the complexity of the site, therefore subfolders may be used to group certain files (**Note:** Caution should be exercised here as components should be modular enough to be reused throughout the site. Don't store something in a 'header' folder if it can also be used in the footer). A 'templates' folder may also be used to seperate page styling from other modules. 
+
+Example Structure:
+```
+6-components
+  _breadcrumbs.scss
+  header
+    _nav.scss
+    _banner.scss
+  _puff.scss
+  templates
+    _contact.scss
+```
+
+## 7. Trumps
+This is the highest specificity section, generally used for helper classes. It's fine to used !important in here, although if the rest of the Sass has been properly following the ITCSS structure, it should be unnecessary.
+
+Example Structure:
+```
+6-components
+  _breadcrumbs.scss
+  header
+    _nav.scss
+    _banner.scss
+  _puff.scss
+  templates
+    _contact.scss
+```
+
+## Example
