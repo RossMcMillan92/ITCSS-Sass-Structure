@@ -270,7 +270,7 @@ Since this file is at the very bottom of the list, adding the '.bg--alpha' class
 		&:after{
 			position: absolute;
 			content: "|";
-			color: nth($palette--primary, 1);
+			color: $palette--primary;
 			margin-left: rem($base-spacing-unit / 2);
 		}
 	}
