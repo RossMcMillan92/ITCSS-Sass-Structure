@@ -206,14 +206,101 @@ This is the highest specificity section, generally used for helper classes. It's
 
 Example Structure:
 ```
-6-components
-  _breadcrumbs.scss
-  header
-    _nav.scss
-    _banner.scss
-  _puff.scss
-  templates
-    _contact.scss
+7-trumps
+  _helper.scss
 ```
 
 ## Example
+```
+// index.html
+<div class="hor-list breadcrumbs">
+  <div class="hor-list__item breadcrumbs__item">Link 1</div>
+  <div class="hor-list__item breadcrumbs__item">Link 2</div>
+  <div class="hor-list__item breadcrumbs__item">Link 3</div>
+</div>
+
+// 5-objects/lists.scss
+.list-hor{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+    .list-hor__item{
+        display: inline-block;
+    }
+    
+// 6-components/breadcumbs.scss
+.breadcrumb{
+	background-color: #000;
+	width: 100%;
+	padding: rem($base-spacing-unit / 2) rem($base-spacing-unit);
+}
+	.breadcrumb__item{
+		font-size: rem(11px);
+		text-transform: uppercase;
+		color: #fff;
+		margin-right: rem($base-spacing-unit / 2);
+
+		&:after{
+			color: nth($palette--primary, 1);
+			margin-left: rem($base-spacing-unit / 2);
+		}
+	}
+```
+
+Note that '.list-hor' has no cosmetic styling (color, font-size etc), while '.breadcrumb' does. This allows us to reuse '.list-hor' without having to unnecessarily *undo* any of it's rules. Also note that the padding on '.list-hor' is being overwritten by the '.breadcrumb' class. Since our component comes after the object in the master Sass file, the '.breadcrumb' rules will overwrite the '.list-hor' rules without any hassle with specificity (i.e. no need for !important).
+
+#### Avoiding @extend
+In the above example you'll notice I entered two classes in the html markup, 'list-hor' and 'breadcrumb'. This could have been achieved by entering only the 'breadcrumb' and then extending the 'list-hor' class within Sass. e.g.
+
+```
+.breadcrumb {
+  @extend .list-hor;
+  background-color: #000;
+  //  ...
+}
+```
+
+There are multiple reasons to avoid this:
+
+1. By extending .list-hor, the .breadcrumb class is being hoisted up next to .list-hor...
+  ```
+  // compiled css
+  .list-hor, .breadcrumbs {/*...*/}
+  ```
+  This has just broken the ITCSS structure as we now have a component class mixed in with an object class. While this won't be an issue 95% of the time, a complex piece of code may cause specificity issues in later parts of the code. Extending has no real advantages other than arguably being more semantic. If semantics is an issue, leave an html comment in the markup clearly explaining your use of classes.
+  
+2. Extending a class with nested rules can and will lots of unnecessary code. ![poorly compiled css](https://pbs.twimg.com/media/B8mlqv_CUAAi7Qg.png:large) Nesting in general should be avoided as much as possible, but if it is necessary, **never** extend it to another class.
+
+#### Use of classes
+Classes should be used to style every element where possible. Sass makes it very easy to nest rules within each other, causing unnecessary specificity. Avoid this unless you have no control over the markup.
+
+##### Bad
+```
+.sidebar-nav{
+  // styling
+  
+  li{
+    // styling
+  }
+}
+```
+##### Good
+```
+.sidebar-nav{
+  // styling
+}
+  .sidebar-nav__item{
+    // styling
+  }
+```
+
+If you must nest tag selectors within a class, try to minimalise code which you'll have to undo later. e.g.
+```
+.header{
+  a {
+    color: red;
+  }
+}
+```
+With the above rule, all links within the .header element. Can you guarantee all links in there should be red? Are some of them green? If so, you will now have to write more code to set some of the other links to green, probably adding in more nested rules causing higher specificity.
