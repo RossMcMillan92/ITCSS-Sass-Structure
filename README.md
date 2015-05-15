@@ -352,7 +352,7 @@ $episode-list-item-font-size: 16px !default;
 To clarify, our local sites widget scss file would take on the following structure:
 - Settings relevant to the sites theme
 - Import the base widget style, which contains !default variables
-- If necessary, list additional or overwritten rules for the widget here.
+- If necessary, list additional or overwritten rules for the widget.
 
 #### Things to note (caveats)
 Using global/widget files would mean creating a standard file and almost never editing it again, as it will have a knock-on effect on multiple sites. Any changes to a rule in a global/widget file should be made by using the process above, and not directly to the original file. If the new site project is the first to use a certain widget, create it in the widgets folder so it can be reused, and link to it in the sites file using the process above.
