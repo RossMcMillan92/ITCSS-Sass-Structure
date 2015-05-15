@@ -371,7 +371,6 @@ $widgets_path = '../../../widgets/styles';
 	@import '#{$globals_path}/4-base/headings';
 	@import '#{$globals_path}/4-base/shared-margins';
 	@import '#{$globals_path}/4-base/fonts';
-	@import '#{$globals_path}/4-base/tables';
 	
 	// local fix
 	@import '4-base/tables';
@@ -434,6 +433,9 @@ $widgets_path = '../../../widgets/styles';
 
 	@import '7-trumps/helper';
 
-
-
 ```
+
+#### Things to note (caveats)
+Using global files would mean creating a standard file and almost never editing it again, as it will have a knock-on effect on multiple sites. Any changes to a rule in a global file should be made by overwriting it within a new file in the sites local directory, letting the styles cascade. If there are many changes to be made, the global file should be ommitted and a new local one should be created to replace it to minimise waste.
+
+Sites with their own specific theme (differing from the main STV colours, fonts etc) will use the least amount of shared Base, Object and Component classes. A boilerplate style for components/widgets should be made so it can easily be copied and updated with new styles.
