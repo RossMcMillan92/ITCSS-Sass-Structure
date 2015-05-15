@@ -306,136 +306,41 @@ If you must nest tag selectors within a class, try to minimalise code which you'
 With the above rule, all links within the .header element will be coloured red. Can you guarantee all links in there should be red? Are some of them green? If so, you will now have to write more code to set some of the other links to green, probably adding in more nested rules causing higher specificity.
 
 ## Adapting this structure for STV
-The example code contained within this git works well for a single site where the whole sass codebase can be kept within the same folder. For STV, this will need to be adapted as styles are spread across different sites which also use different widgets. An example master scss file would look like this:
+The example code contained within this git works well for a single site where the whole sass codebase can be kept within the same folder. Since the STV code base will have files spread out over a global folder, widgets folders and the individual sites folder, we need to make some adaptations. I propose heavily using !default variables when creating widgets to maximise reusability and minimise undoing/waste. e.g.
 
 ```
-// core.stv.tv/public/assets/source/sites/emmerdale/master.scss
+// core.stv.tv/public/assets/source/sites/emmerdale/6-components/epsiode-list.scss
 
-$globals_path = '../../../global/styles';
-$widgets_path = '../../../widgets/styles';
+$episode-list-item-bg-color: #red;
+$episode-list-item-font-size: 18px;
 
-// The three areas of files will be 'global', where 
-// files that will be used across multiple sites
-// are kept. 'Widgets', which is obviously styling
-// scoped to a single reusable widget. And 'local',
-// which contains files within the site being worked on
+@import '#{$widgets_path}/epsiode-list';
 
-
-/* ----------------------------------------------
-	1. Settings
----------------------------------------------- */ 
-
-	// Import global palette file with main STV scheme
-	// Also import local palette file which will overwrite
-	// global with any settings unique to the site
-	@import '#{$globals_path}/1-settings/palette';
-	@import '1-settings/palette'; 
-	
-	@import '1-settings/fonts';
-	@import '1-settings/breakpoints';
-	@import '1-settings/content-structure';
-
-
-
-/* ----------------------------------------------
-	2. Tools
----------------------------------------------- */ 
-
-	// Tools will generally be kept in global
-	@import '#{$globals_path}/2-tools/generic';
-	@import '#{$globals_path}/2-tools/mediaqueries';
-	@import '#{$globals_path}/2-tools/units';
-
-
-/* ----------------------------------------------
-	3. Generic
----------------------------------------------- */ 
-
-        // Generic will be kept in global as these 
-	// files generally shouldn't change
-	@import '#{$globals_path}/3-generic/normalize';
-	@import '#{$globals_path}/3-generic/generic';
-	@import '#{$globals_path}/3-generic/clearfix';
-	@import '#{$globals_path}/3-generic/debug';
-
-	// Any site-specific fixes to the above files
-	// can be amended in or replaced by a local file 
-	// of the same name
-	@import '3-generic/generic';
-
-/* ----------------------------------------------
-	4. Base
----------------------------------------------- */ 
-
-	@import '#{$globals_path}/4-base/global';
-	@import '#{$globals_path}/4-base/headings';
-	@import '#{$globals_path}/4-base/shared-margins';
-	@import '#{$globals_path}/4-base/fonts';
-	
-	// local fix
-	@import '4-base/tables';
-	
-	// files with unique styles to the project
-	@import '4-base/lists';
-
-
-/* ----------------------------------------------
-	5. Objects
----------------------------------------------- */ 
-
-	// global 
-	@import '#{$globals_path}/5-objects/grids';
-	@import '#{$globals_path}/5-objects/lists';
-	@import '#{$globals_path}/5-objects/pseudo';
-	@import '#{$globals_path}/5-objects/slider';
-	@import '#{$globals_path}/5-objects/icons';
-	@import '#{$globals_path}/5-objects/media';
-	
-	// local amendments/replacements
-	@import '5-objects/slider';
-	@import '5-objects/text';
-
-
-/* ----------------------------------------------
-	6. Components
----------------------------------------------- */ 
-
-	// From here on down, the amount of global files
-	// will be minimal, as these styles will tend to  
-	// be more unique than those above. Widget styles
-	// may be reused with a paired amendment file for
-        // small changes, or may be replaced entirely
-
-	// widget file and paired amendment file
-	@import '#{$widgets_path}/epsiode-list';
-	@import '6-components/epsiode-list';
-	
-	@import '6-components/banner';
-	@import '6-components/breadcrumb';
-	@import '6-components/buttons';
-	
-	// Files grouped into folders
-	@import '6-components/footer/footer-nav';
-	@import '6-components/footer/footer-cta';
-	
-	@import '6-components/forms';
-	@import '6-components/header';
-	@import '6-components/inner-content';
-	@import '6-components/layout-structure';
-	@import '6-components/lightbox';
-	@import '6-components/pagination';
-	@import '6-components/search-results';
-
-
-/* ----------------------------------------------
-	7-trumps
----------------------------------------------- */ 
-
-	@import '7-trumps/helper';
+// overwriting style that doesn't have a variable option
+.epsiode-list__item{
+  float: right;
+}
 
 ```
+The '#{$widgets_path}/epsiode-list.scss' file would look like: 
+```
+$episode-list-item-bg-color: #blue !default;
+$episode-list-item-font-size: 16px !default;
+//...
+
+.epsiode-list__item{
+  background-color: $episode-list-item-bg-color;
+  font-size: rem($episode-list-item-font-size);
+  float: left;
+  //...
+}
+
+```
+
+To clarify, our local sites widget scss file would take on the following structure:
+- Settings relevant to the sites theme
+- Import the base widget style, which contains !default variables
+- If necessary, list additional or overwritten rules for the widget here.
 
 #### Things to note (caveats)
-Using global files would mean creating a standard file and almost never editing it again, as it will have a knock-on effect on multiple sites. Any changes to a rule in a global file should be made by overwriting it within a new file in the sites local directory, letting the styles cascade. If there are many changes to be made, the global file should be ommitted and a new local one should be created to replace it to minimise waste.
-
-Sites with their own specific theme (differing from the main STV colours, fonts etc) will use the least amount of shared Base, Object and Component classes. A boilerplate style for components/widgets should be made so it can easily be copied and updated with new styles.
+Using global/widget files would mean creating a standard file and almost never editing it again, as it will have a knock-on effect on multiple sites. Any changes to a rule in a global/widget file should be made by using the process above, and not directly to the original file. If the new site project is the first to use a certain widget, create it in the widgets folder so it can be reused, and link to it in the sites file using the process above.
