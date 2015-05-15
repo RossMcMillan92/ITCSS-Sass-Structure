@@ -1,5 +1,5 @@
-# STV-Sass
-Based on Harry Roberts' concept ITCSS. For a complete overview, watch [this talk](https://www.youtube.com/watch?v=1OKZOV-iLj4) and [read the slides](https://speakerdeck.com/dafed/managing-css-projects-with-itcss). This git serves as a working example, however it's not perfect.
+# STV Sass
+Based on Harry Roberts' concept ITCSS. For a complete overview, watch [this talk](https://www.youtube.com/watch?v=1OKZOV-iLj4) and [read the slides](https://speakerdeck.com/dafed/managing-css-projects-with-itcss). This git serves as a working example, however it's not perfect and certainly not adapted to work with the current STV codebase.
 
 ## Overview
 ITCSS is a certain way of structuring Sass (or css) files to minimise rewriting/undoing code, and to maximise scalability. IT stands for Inverted Triangle, which is the basis of the code structure. In our master sass file, rules which broadly affect elements on the page are imported at the top. As specificity grows, the further down the file the rules will be imported. 
@@ -304,3 +304,136 @@ If you must nest tag selectors within a class, try to minimalise code which you'
 }
 ```
 With the above rule, all links within the .header element will be coloured red. Can you guarantee all links in there should be red? Are some of them green? If so, you will now have to write more code to set some of the other links to green, probably adding in more nested rules causing higher specificity.
+
+## Adapting this structure for STV
+The example code contained within this git works well for a single site where the whole sass codebase can be kept within the same folder. For STV, this will need to be adapted as styles are spread across different sites which also use different widgets. An example master scss file would look like this:
+
+```
+// core.stv.tv/public/assets/source/sites/emmerdale/master.scss
+
+$globals_path = '../../../global/styles';
+$widgets_path = '../../../widgets/styles';
+
+// The three areas of files will be 'global', where 
+// files that will be used across multiple sites
+// are kept. 'Widgets', which is obviously styling
+// scoped to a single reusable widget. And 'local',
+// which contains files within the site being worked on
+
+
+/* ----------------------------------------------
+	1. Settings
+---------------------------------------------- */ 
+
+	// Import global palette file with main STV scheme
+	// Also import local palette file which will overwrite
+	// global with any settings unique to the site
+	@import '#{$globals_path}/1-settings/palette';
+	@import '1-settings/palette'; 
+	
+	@import '1-settings/fonts';
+	@import '1-settings/breakpoints';
+	@import '1-settings/content-structure';
+
+
+
+/* ----------------------------------------------
+	2. Tools
+---------------------------------------------- */ 
+
+	// Tools will generally be kept in global
+	@import '#{$globals_path}/2-tools/generic';
+	@import '#{$globals_path}/2-tools/mediaqueries';
+	@import '#{$globals_path}/2-tools/units';
+
+
+/* ----------------------------------------------
+	3. Generic
+---------------------------------------------- */ 
+
+        // Generic will be kept in global as these 
+	// files generally shouldn't change
+	@import '#{$globals_path}/3-generic/normalize';
+	@import '#{$globals_path}/3-generic/generic';
+	@import '#{$globals_path}/3-generic/clearfix';
+	@import '#{$globals_path}/3-generic/debug';
+
+	// Any site-specific fixes to the above files
+	// can be amended in or replaced by a local file 
+	// of the same name
+	@import '3-generic/generic';
+
+/* ----------------------------------------------
+	4. Base
+---------------------------------------------- */ 
+
+	@import '#{$globals_path}/4-base/global';
+	@import '#{$globals_path}/4-base/headings';
+	@import '#{$globals_path}/4-base/shared-margins';
+	@import '#{$globals_path}/4-base/fonts';
+	@import '#{$globals_path}/4-base/tables';
+	
+	// local fix
+	@import '4-base/tables';
+	
+	// files with unique styles to the project
+	@import '4-base/lists';
+
+
+/* ----------------------------------------------
+	5. Objects
+---------------------------------------------- */ 
+
+	// global 
+	@import '#{$globals_path}/5-objects/grids';
+	@import '#{$globals_path}/5-objects/lists';
+	@import '#{$globals_path}/5-objects/pseudo';
+	@import '#{$globals_path}/5-objects/slider';
+	@import '#{$globals_path}/5-objects/icons';
+	@import '#{$globals_path}/5-objects/media';
+	
+	// local amendments/replacements
+	@import '5-objects/slider';
+	@import '5-objects/text';
+
+
+/* ----------------------------------------------
+	6. Components
+---------------------------------------------- */ 
+
+	// From here on down, the amount of global files
+	// will be minimal, as these styles will tend to  
+	// be more unique than those above. Widget styles
+	// may be reused with a paired amendment file for
+        // small changes, or may be replaced entirely
+
+	// widget file and paired amendment file
+	@import '#{$widgets_path}/epsiode-list';
+	@import '6-components/epsiode-list';
+	
+	@import '6-components/banner';
+	@import '6-components/breadcrumb';
+	@import '6-components/buttons';
+	
+	// Files grouped into folders
+	@import '6-components/footer/footer-nav';
+	@import '6-components/footer/footer-cta';
+	
+	@import '6-components/forms';
+	@import '6-components/header';
+	@import '6-components/inner-content';
+	@import '6-components/layout-structure';
+	@import '6-components/lightbox';
+	@import '6-components/pagination';
+	@import '6-components/search-results';
+
+
+/* ----------------------------------------------
+	7-trumps
+---------------------------------------------- */ 
+
+	@import '7-trumps/helper';
+
+
+
+```
