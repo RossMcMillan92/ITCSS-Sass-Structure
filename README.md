@@ -2,16 +2,16 @@
 Based on Harry Roberts' concept ITCSS. For a complete overview, watch [this talk](https://www.youtube.com/watch?v=1OKZOV-iLj4) and [read the slides](https://speakerdeck.com/dafed/managing-css-projects-with-itcss). This git serves as a working example, however it's not perfect and certainly not adapted to work with the current STV codebase.
 
 ## Contents
-- [Overview](#overview)
-- [1. Settings](#1-settings)
-- [2. Tools](#2-tools)
-- [3. Generic](#3-generic)
-- [4. Base](#4-base)
-- [5. Objects](#5-objects)
-- [6. Components](#6-components)
-- [7. Trumps](#7-trumps)
-- [Example](#example)
-- [Adapting this structure for STV](#adapting-this-structure-for-stv)
+[Overview](#overview)
+[1. Settings](#1-settings)
+[2. Tools](#2-tools)
+[3. Generic](#3-generic)
+[4. Base](#4-base)
+[5. Objects](#5-objects)
+[6. Components](#6-components)
+[7. Trumps](#7-trumps)
+[Example](#example)
+[Adapting this structure for STV](#adapting-this-structure-for-stv)
 
 ## Overview
 ITCSS is a certain way of structuring Sass (or css) files to minimise rewriting/undoing code, and to maximise scalability. IT stands for Inverted Triangle, which is the basis of the code structure. In our master sass file, rules which broadly affect elements on the page are imported at the top. As specificity grows, the further down the file the rules will be imported. 
