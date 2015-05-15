@@ -268,6 +268,8 @@ Since this file is at the very bottom of the list, adding the '.bg--alpha' class
 		margin-right: rem($base-spacing-unit / 2);
 
 		&:after{
+			position: absolute;
+			content: "|";
 			color: nth($palette--primary, 1);
 			margin-left: rem($base-spacing-unit / 2);
 		}
