@@ -331,7 +331,7 @@ If you must nest tag selectors within a class, try not to be too broad with spec
   }
 }
 ```
-With the above rule, all links within the .header element will be coloured red. Can you guarantee all links in there should be red? Are some of them green? If so, you will now have to write more code to set some of the other links to green, probably adding in more nested rules causing higher specificity.
+With the above rule, all links within the .header element will be coloured red. Can you guarantee all links in there should be red? Are some of them the default font color? If so, you will now have to write more code to change the other links back, probably adding in more nested rules, causing higher specificity.
 
 ## Adapting this structure for STV
 The example code contained within this git works well for a single site where the whole sass codebase can be kept within the same folder. Since the STV code base will have files spread out over a global folder, widgets folders and the individual sites folder, we need to make some adaptations. I propose heavily using !default variables when creating widgets to maximise reusability and minimise undoing/waste. e.g.
