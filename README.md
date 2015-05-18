@@ -50,7 +50,7 @@ The full Sass structure looks like the following:
 1. **Trumps**   		- Helpers and overrides
 
 ## 1. Settings
-Site-wide variables such as margin sizes, color schemes, font families/sizes etc. should go in here. There should be minimal 'Magic Numbers' throughout the code.
+Site-wide variables such as margin sizes, color schemes, font families/sizes etc. should go in here. There should be minimal 'Magic Numbers' throughout the code. **Note:** These settings are for site-wide variables. Component specific settings should go at the top of the component's file.
 
 Example Structure:
 ```
@@ -141,7 +141,7 @@ Example Structure:
 
 Example rules: 
 ```
-// _global.scss
+// 4-base/_global.scss
 html{
 	font-family: $base-font-family;
 	font-size: $base-font-size;
@@ -155,7 +155,7 @@ body{
     -webkit-font-smoothing: antialiased;
 }
 
-// _headings.scss
+// 4-base/_headings.scss
 h1{
     font-size: $h1-size;
 }
