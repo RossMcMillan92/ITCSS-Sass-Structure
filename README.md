@@ -271,9 +271,10 @@ Example Structure:
 
 ##### Also good
 ```
-// 5-objects/navbar.scss
+// 6-components/navbar.scss
 .navbar {
   height: 60px;
+  padding: 10px;
   // ...
 }
 
@@ -285,6 +286,9 @@ Example Structure:
   background-color: green;
 }
 ```
+One thing to note about the 'Also good' example is that it can quickly build up and make a single component overly complex. Caution should be taken when using this approach.
+
+Both of the above examples work well because no component depends on another. This is not to say components can't be nested, but a single element shouldn't have two different components classes assigned to it. 
 
 ## 7. Trumps
 This is the highest specificity section, generally used for helper classes. It's fine to used !important in here, although if the rest of the Sass has been properly following the ITCSS structure, it should be unnecessary.
