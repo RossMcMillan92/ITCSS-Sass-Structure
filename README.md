@@ -74,7 +74,7 @@ $red: #ff2134; // Sites primary theme color
   font-color: $red;
 }
 ```
-If we want to change the sites primary theme colour to green, we'll need to change it in the settings file, as well as the components file.
+If we want to change the sites primary theme colour to green, we'll need to change it in the settings file, as well as the components file (and all other files it's used in.)
 
 ##### Good
 ```
