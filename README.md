@@ -225,6 +225,41 @@ Example Structure:
     _contact-page.scss
 ```
 
+**Note:** Components may depend on objects to complete the style, but two components should *rarely* rely on each other as they should be kept as completely seperate entities. If you find that you can extend one component to create a new but similar one, consider combining the components into one and using modifier flags ('.component**--alt-style**') to differentiate.
+
+##### Bad
+```
+// 6-components/header-navbar.scss
+.header-navbar {
+  height: 60px;
+  background-color: red;
+  // ...
+}
+
+// 6-components/footer-navbar.scss
+.footer-navbar {
+  @extend .header-navbar;
+  background-color: green;
+}
+```
+
+##### Good
+```
+// 6-components/navbar.scss
+.navbar {
+  height: 60px;
+  // ...
+}
+
+.navbar--header {
+  background-color: red
+}
+
+.navbar--footer {
+  background-color: green;
+}
+```
+
 ## 7. Trumps
 This is the highest specificity section, generally used for helper classes. It's fine to used !important in here, although if the rest of the Sass has been properly following the ITCSS structure, it should be unnecessary.
 
