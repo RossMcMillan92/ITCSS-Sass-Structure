@@ -1,6 +1,8 @@
 # STV Sass
 Based on Harry Roberts' concept ITCSS. For a complete overview, watch [this talk](https://www.youtube.com/watch?v=1OKZOV-iLj4) and [read these slides](https://speakerdeck.com/dafed/managing-css-projects-with-itcss). This git serves as a working example, however it's not perfect and hasn't been adapted to work with the current STV codebase. I talk about [adapting this structure](#adapting-this-structure-for-stv) later in this readme.
 
+*A lot of things discussed here will be common sense and may sound condescending to some, but it's important to state to make sure we're all on the same page. There are also some opinionated points which may need to be ironed out by the team before the system is considered.*
+
 ## Contents
 1. [Overview](#overview)
 1. [1. Settings](#1-settings)
@@ -242,7 +244,6 @@ Example rules:
 Since this file is at the very bottom of the list, adding the '.bg--alpha' class to an element will 'trump' any previously set background-color. (Unless previous rules have a higher specificity, which is why we should strive to use only single classes with a naming convention like BEM. If higher specificity is necessary and we still need to use a trump class, we can safely add !important to the trump rules as there isn't much scope for problems this late on in the file.)
 
 ## Example
-(This example and the points made about it will be common sense to some, but I feel it's important to make sure everyone's on the same page.)
 
 ```
 // index.html
