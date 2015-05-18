@@ -14,7 +14,7 @@ Based on Harry Roberts' concept ITCSS. For a complete overview, watch [this talk
 1. [Adapting this structure for STV](#adapting-this-structure-for-stv)
 
 ## Overview
-ITCSS is a certain way of structuring Sass (or css) files to minimise rewriting/undoing code, and to maximise scalability. IT stands for Inverted Triangle, which is the basis of the code structure. In our master sass file, rules which broadly affect elements on the page are imported at the top. As specificity grows, the further down the file the rules will be imported. 
+ITCSS is a certain way of structuring Sass (or css) files to minimise rewriting/undoing code, and to maximise scalability. IT stands for Inverted Triangle, which is the basis of the code structure. In our master Sass file, rules which broadly affect elements on the page are imported at the top. As specificity grows, the further down the file the rules will be imported. 
 
 ![Specificity triangle](http://i.imgur.com/okdOFdK.png)
 
@@ -82,20 +82,18 @@ $palette--primary: $red;
 }
 ```
 
-Another point to make here is all sizes should be stated in px, but converted to em/rem when used in later components. e.g.
+Another point to make here is all sizes should be stated in px, but later converted to em/rem with a Sass function. e.g.
 ```
 // 1-settings/content-structure.scss
 $base-spacing-unit: 20px;
 ...
 
 // 6-components/puff.scss
-$puff-margin-bottom: $base-spacing-unit !default;
-
 .puff{
-  margin-bottom: rem($puff-margin-bottom);
+  margin-bottom: rem($base-spacing-unit);
 }
-.puff--secondary{
-  margin-bottom: rem($puff-margin-bottom / 2);
+.puff--half{
+  margin-bottom: rem($base-spacing-unit / 2);
 }
 ```
 Using pixels allows us to match designs with great detail and will keep math simple, while converting to em/rem allows us to maintain responsiveness and accessibility.
@@ -338,7 +336,7 @@ If you must nest tag selectors within a class, try not to be too broad with your
 The rule above will affect *all* links in the header. Can you guarantee they should should be red? If not, you will now have to write more code to change the other links back possibly causing higher specificity.
 
 ## Adapting this structure for STV
-The example code contained within this git works well for a single site where the whole sass codebase can be kept within the same folder. Since the STV code base will have files spread out over a global folder, widgets folders and the individual sites folder, we need to make some adaptations. I propose heavily using !default variables when creating widgets to maximise reusability and minimise undoing/waste. e.g.
+The example code contained within this git works well for a single site where the whole Sass codebase can be kept within the same folder. Since the STV code base will have files spread out over a global folder, widgets folders and the individual sites folder, we need to make some adaptations. I propose heavily using !default variables when creating widgets to maximise reusability and minimise undoing/waste. e.g.
 
 ```
 // core.stv.tv/public/assets/source/sites/emmerdale/6-components/epsiode-list.scss
