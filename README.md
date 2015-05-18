@@ -298,7 +298,7 @@ There are multiple reasons to avoid this:
   // compiled css
   .list-hor, .breadcrumbs {/*...*/}
   ```
-  This has just broken the ITCSS structure as we now have a component class mixed in with an object class. While this won't be an issue 95% of the time, a complex piece of code may cause specificity issues in later parts of the code. Extending has no real advantages other than arguably being more semantic. If semantics is an issue, leave an html comment in the markup clearly explaining your use of classes.
+  This has just broken the ITCSS structure as we now have a component class mixed in with an object class. While this won't be an issue 95% of the time, a complex piece of code may cause specificity issues in later parts of the code. Extending has no real advantages other than arguably being more semantic. If semantics is an issue, an html comment can be left in the markup to explain the used classes.
   
 2. Extending a class with nested rules can and will lots of unnecessary code. ![poorly compiled css](https://pbs.twimg.com/media/B8mlqv_CUAAi7Qg.png:large) Nesting in general should be avoided as much as possible, but if it is necessary, **never** extend it to another class.
 
