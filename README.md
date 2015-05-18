@@ -460,7 +460,7 @@ $article-list__img-width: 50px !default;
 ```
 Take note of the variables at the top. They are all trailed with !default, which means we can override them. Also notice the if statements in some of the variables, acting like a ternary statement. This allows us to look for a standard variable name and use it if it exists, otherwise a default value is set.
 
-Now, we need to use this widget on our new site and match it to it's theme. Instead of rewriting the styles from scratch, all we need to do is import the standard widget style and change some variables. We can also add some overwritten/additional classes to the end if the standard file can't fully adapt. So the Sass file in our sites codebase looks like:
+Now, we need to use this widget on our new site and match it to it's theme. Instead of rewriting the styles from scratch, all we need to do is import the standard widget style and change some variables. We can also add some overwritten/additional classes to the end if the standard file can't fully adapt. So the Sass file in our site's codebase looks like:
 
 ```
 // 6-components/_article-list.scss
