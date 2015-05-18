@@ -108,7 +108,7 @@ $puff-margin-bottom: $base-spacing-unit !default;
   margin-bottom: rem($puff-margin-bottom / 2);
 }
 ```
-Using pixels allows us to match designs with great detail and will keep math simple, while converting to em/rem allows us to maintain responsiveness and accessibility.
+Using pixels allows us to match designs with great detail and will keep any math as simple as possible. Converting to em/rem when it's finally needed will keep the sites responsive and accessible.
 
 ## 2. Tools
 Self explanatory; keep any mixins/functions in here. High up in the list as these tools will be used throughout the rest of the Sass.
