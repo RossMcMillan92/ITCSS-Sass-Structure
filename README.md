@@ -417,7 +417,7 @@ If you must nest tag selectors within a class, try not to be too broad with your
 The rule above will affect *all links in the header*. Can you guarantee they should all be red? If not, you will now have to write more code to change the other links back possibly causing higher specificity.
 
 ## Using widgets
-At STV we make good use of reusable 'widgets' which allow us to drop in some functionality with minimal effort. To extend this drop-in functionality, we can use some methods to make use of a standard style, which can be quickly updated and extended in our individual site's Sass codebase.
+At STV we make good use of reusable 'widgets' which allow us to drop in some functionality with minimal effort. To extend this drop-in functionality, we can use certain methods to make use of a standard style, which can be quickly updated and extended in our individual site's Sass codebase.
 
 To give an example, take the following mocked up 'article-list' widget. ![Default article-list style](http://i.imgur.com/iP9cJcL.png)
 
