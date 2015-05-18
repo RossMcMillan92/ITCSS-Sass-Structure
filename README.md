@@ -59,7 +59,7 @@ Example Structure:
 ```
 
 #### Variable names
-Avoid explicitly naming variables to avoid refactoring code in the future. e.g.
+Avoid explicitly naming variables to avoid refactoring code in the future. 
 
 ##### Bad
 ```
