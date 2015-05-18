@@ -232,6 +232,7 @@ Example Structure:
 // 6-components/header-navbar.scss
 .header-navbar {
   height: 60px;
+  padding: 10px;
   background-color: red;
   // ...
 }
