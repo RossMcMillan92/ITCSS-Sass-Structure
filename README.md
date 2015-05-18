@@ -420,6 +420,7 @@ The rule above will affect *all links in the header*. Can you guarantee they sho
 At STV we make good use of reusable 'widgets' which allow us to drop in some functionality with minimal effort. To extend this drop-in functionality, we can use certain methods to make use of a standard style, which can be quickly updated and extended in our individual site's Sass codebase.
 
 To give an example, take the following mocked up 'article-list' widget. 
+
 ![Default article-list style](http://i.imgur.com/iP9cJcL.png)
 
 The code for this looks like the following
@@ -480,6 +481,7 @@ $article-list__img-width: 100px;
 
 ```
 This additional code can transform the standard style into something completely new, with minimal additional code, keeping our codebase DRY and modular. 
+
 ![Themed article-list style](http://i.imgur.com/ybXmCiD.png)
 
 To clarify, our local site's widget scss file would take on the following structure:
