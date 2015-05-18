@@ -464,7 +464,7 @@ Take note of the variables at the top. They are all trailed with !default, which
 
 Now, we need to use this widget on our new site and match it to it's theme. Our first instinct would be to copy/paste a previous style and hack away, or even just rewrite the style from scratch. But with this method, all we need to do is import the standard widget style and change some variables. We can also add some overwritten/additional classes to the end if the standard file can't fully adapt. So the Sass file in our site's codebase looks like:
 
-```
+``` sass
 // 6-components/_article-list.scss
 
 $article-list__border-color: #555;
