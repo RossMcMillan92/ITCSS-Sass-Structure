@@ -4,8 +4,8 @@ Based on Harry Roberts' concept ITCSS. For a complete overview, watch [this talk
 ## Contents
 1. [Overview](#overview)
 1. [1. Settings](#1-settings)
-  - f
-  - f
+  - Variable names
+  - Variable units
 1. [2. Tools](#2-tools)
 1. [3. Generic](#3-generic)
 1. [4. Base](#4-base)
@@ -58,7 +58,9 @@ Example Structure:
   _palette.scss
 ```
 
-**Note:** Avoid explicitly naming variables to avoid refactoring code in the future. e.g.
+#### Variable names
+Avoid explicitly naming variables to avoid refactoring code in the future. e.g.
+
 #### Bad
 ```
 // 1-settings/pallete.scss
@@ -84,6 +86,7 @@ $palette--primary: $red;
 }
 ```
 
+#### Variable units
 Another point to make here is all sizes should be stated in px, but later converted to em/rem with a Sass function. e.g.
 ```
 // 1-settings/content-structure.scss
