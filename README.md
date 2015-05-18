@@ -89,11 +89,13 @@ $base-spacing-unit: 20px;
 ...
 
 // 6-components/puff.scss
+$puff-margin-bottom: $base-spacing-unit !default;
+
 .puff{
-  margin-bottom: rem($base-spacing-unit);
+  margin-bottom: rem($puff-margin-bottom);
 }
-.puff--half{
-  margin-bottom: rem($base-spacing-unit / 2);
+.puff--secondary{
+  margin-bottom: rem($puff-margin-bottom / 2);
 }
 ```
 Using pixels allows us to match designs with great detail and will keep math simple, while converting to em/rem allows us to maintain responsiveness and accessibility.
