@@ -61,7 +61,7 @@ Example Structure:
 ```
 
 #### Variable names
-Avoid explicitly naming variables to avoid refactoring code in the future. 
+Keep variable names ambiguous to prevent refactoring code in the future.
 
 ##### Bad
 ```
@@ -93,7 +93,7 @@ Another point to make here is all sizes should be stated in px, but later conver
 ```
 // 1-settings/content-structure.scss
 $base-spacing-unit: 20px;
-...
+// ...
 
 // 6-components/puff.scss
 $puff-margin-bottom: $base-spacing-unit !default;
