@@ -66,7 +66,7 @@ Keep variable names ambiguous to prevent refactoring code in the future.
 ##### Bad
 ```
 // 1-settings/pallete.scss
-$red: #ff2134;
+$red: #ff2134; // Sites primary theme color
 // ...
 
 // 6-components/puff.scss
@@ -74,20 +74,22 @@ $red: #ff2134;
   font-color: $red;
 }
 ```
+If we want to change the sites primary theme colour to green, we'll need to change it in the settings file, as well as the components file.
 
 ##### Good
 ```
 // 1-settings/pallete.scss
-$red: #ff2134;
-$palette--primary: $red;
+$red: #ff2134; // Use concrete names to describe variables that won't change
+$palette--primary: $red; // Use ambiguous names for variables that may change, and that are used throughout the site
 // ...
 
 // 6-components/puff.scss
-$puff-font-color: $palette--primary;
+$puff-font-color: $palette--primary !default;
 .puff{
   font-color: $puff-font-color;
 }
 ```
+This way may seem more complex than the first, but it means if we want to change the sites primary theme colour to green we'll only need to change it once within the settings file. This gives us a lot more flexibility.
 
 #### Variable units
 Another point to make here is all sizes should be stated in px, but later converted to em/rem with a Sass function. e.g.
