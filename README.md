@@ -67,7 +67,7 @@ Keep variable names ambiguous to prevent refactoring code in the future.
 ```
 // 1-settings/pallete.scss
 $red: #ff2134;
-...
+// ...
 
 // 6-components/puff.scss
 .puff{
@@ -80,7 +80,7 @@ $red: #ff2134;
 // 1-settings/pallete.scss
 $red: #ff2134;
 $palette--primary: $red;
-...
+// ...
 
 // 6-components/puff.scss
 .puff{
