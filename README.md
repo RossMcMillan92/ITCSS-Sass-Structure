@@ -416,41 +416,75 @@ If you must nest tag selectors within a class, try not to be too broad with your
 ```
 The rule above will affect *all links in the header*. Can you guarantee they should all be red? If not, you will now have to write more code to change the other links back possibly causing higher specificity.
 
-## Adapting this structure for STV
-The example code contained within this git works well for a single site where the whole Sass codebase can be kept within the same folder. Since the STV code base will have files spread out over a global folder, widgets folders and the individual sites folder, we need to make some adaptations. I propose heavily using !default variables when creating widgets to maximise reusability and minimise undoing/waste. e.g.
+## Using widgets
+At STV we make good use of reusable 'widgets' which allow us to drop in some functionality with minimal effort. To extend this drop-in functionality, we can use some methods to make use of a standard style, which can be quickly updated and extended in our individual site's Sass codebase.
+
+To give an example, take the following mocked up 'article-list' widget. ![Default article-list style](http://i.imgur.com/iP9cJcL.png)
+
+The code for this looks like the following
 
 ```
-// core.stv.tv/public/assets/source/sites/emmerdale/6-components/epsiode-list.scss
+// core.stv.tv/public/assets/source/widgets/article-list.scss
 
-$episode-list-item-bg-color: red;
-$episode-list-item-font-size: 18px;
+// naming convention to be determined
+$article-list__border-color: #ccc !default;
+$article-list__spacing: if(variable-exists(base-spacing-unit), $base-spacing-unit / 2, 10px) !default;
+$article-list__bg-color: #fff !default;
+$article-list__font-color: if(variable-exists(palette--primary), nth($palette--primary, 2), red) !default;
+$article-list__img-width: 50px !default;
 
-@import '#{$widgets_path}/epsiode-list';
+.article-list {
+	border: solid 1px $article-list__border-color;
+}
+	.article-list__item {
+		padding: rem($article-list__spacing);
+		border-bottom: solid 1px $article-list__border-color;
+		background-color: $article-list__bg-color;
 
-// overwriting/extending styles 
-.epsiode-list__item{
-  float: right;
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+
+	.article-list__img {
+		width: rem($article-list__img-width);
+		height: auto;
+		margin-right: rem($article-list__spacing);
+		float: left;
+	}
+
+	.article-list__body {
+		color: $article-list__font-color;
+	}
+
+```
+Take note of the variables at the top. They are all trailed with !default, which means we can override this variable. Also notice the if statements in some of the variables, acting like a ternary statement. This allows us to look for a standard variable name and use it if it exists, otherwise a default value is set.
+
+Now, we need to use this widget on our new site and match it to it's theme. Instead of rewriting the styles from scratch, all we need to do is import the standard widget style and change some variables. We can also add some overwritten/additional classes to the end if the standard file can't fully adapt. So the Sass file in our sites codebase looks like:
+
+```
+// 6-components/_article-list.scss
+
+$article-list__border-color: #555;
+$article-list__spacing: 20px;
+$article-list__bg-color: #222;
+$article-list__font-color: #fff;
+$article-list__img-width: 100px;
+
+@import 'external-widget';
+
+.article-list__img {
+	border-radius: 50%;
 }
 
 ```
-The '#{$widgets_path}/epsiode-list.scss' file would look like: 
-```
-$episode-list-item-bg-color: blue !default;
-$episode-list-item-font-size: 16px !default;
-// ...
-
-.epsiode-list__item{
-  background-color: $episode-list-item-bg-color;
-  font-size: rem($episode-list-item-font-size);
-  float: left;
-  // ...
-}
-
-```
+This additional code can transform the standard style to something like this ![Themed article-list style](http://i.imgur.com/ybXmCiD.png)
 
 To clarify, our local sites widget scss file would take on the following structure:
 - Settings relevant to the sites theme
-- Import the base widget style, which contains !default variables
+- Import the standard widget style, which contains !default variables
 - If necessary, list additional or overwritten rules for the widget
+
+If the widget styling is entirely different to the original style, there's obviously no need to import the original style. It may be a good idea to implement multiple standard 'views' for the widget, for example 'article-list--vert.scss' and 'article-list--hor.scss', then import the most relevant standard file.
 
 **Note:** Using global/widget files would mean creating a standard file and almost never editing it again, as it will have a knock-on effect on multiple sites. Any changes to a rule in a global/widget file for a new site should be made by using the process above, and not directly to the original file. If the new site project is the first to use a certain widget, create it in the widgets folder so it can be reused, and link to it in the sites file like above.
