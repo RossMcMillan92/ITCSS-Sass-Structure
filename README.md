@@ -225,7 +225,7 @@ Example Structure:
     _contact-page.scss
 ```
 
-**Note:** Components may depend on objects to complete the style, but two components should *rarely* rely on each other as they should be kept as completely seperate entities. If you find that you can extend one component to create a new but similar one, consider combining the components into one and using modifier flags ('.component**--alt-style**') to differentiate.
+**Note:** Components may depend on objects to complete the style, but two components should *rarely* rely on each other as they should be kept as completely seperate entities. If you find that you can extend one component to create a new but similar one, consider refactoring the component into an object which can be reused and later embellished in the component. Alternatively, try combining the components into one and using modifier flags ('.component**--alt-style**') to differentiate.
 
 ##### Bad
 ```
@@ -245,7 +245,33 @@ Example Structure:
 
 ##### Good
 ```
-// 6-components/navbar.scss
+// 5-objects/navbar.scss
+.navbar {
+  height: 60px;
+  padding: 10px;
+  // ...
+}
+
+// 6-components/header-menu.scss
+.header-menu {
+  background-color: red
+}
+
+// 6-components/footer-menu.scss
+.footer-menu {
+  background-color: green;
+}
+
+// index.html
+
+<div class="navbar header-menu">
+  <!-- ... -->
+</div>
+```
+
+##### Also good
+```
+// 5-objects/navbar.scss
 .navbar {
   height: 60px;
   // ...
