@@ -480,7 +480,7 @@ $article-list__img-width: 100px;
 }
 
 ```
-This additional code can transform the standard style into something completely new, with minimal additional code, keeping our codebase DRY and modular. 
+This additional code can quickly transform the standard style into something completely new, with minimal additional code, keeping our codebase DRY and modular. 
 
 ![Themed article-list style](http://i.imgur.com/ybXmCiD.png)
 
