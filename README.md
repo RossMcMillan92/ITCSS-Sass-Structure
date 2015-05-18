@@ -218,8 +218,8 @@ Example Structure:
 6-components
   _breadcrumbs.scss
   header
-    _nav.scss
     _banner.scss
+    _header.scss
   _puff.scss
   templates
     _contact-page.scss
@@ -245,32 +245,6 @@ Example Structure:
 
 ##### Good
 ```
-// 5-objects/navbar.scss
-.navbar {
-  height: 60px;
-  padding: 10px;
-  // ...
-}
-
-// 6-components/header-menu.scss
-.header-menu {
-  background-color: red
-}
-
-// 6-components/footer-menu.scss
-.footer-menu {
-  background-color: green;
-}
-
-// index.html
-
-<div class="navbar header-menu">
-  <!-- ... -->
-</div>
-```
-
-##### Also good
-```
 // 6-components/navbar.scss
 .navbar {
   height: 60px;
@@ -286,7 +260,37 @@ Example Structure:
   background-color: green;
 }
 ```
-One thing to note about the 'Also good' example is that it can quickly build up and make a single component overly complex. Caution should be taken when using this approach.
+
+##### Better
+```
+// 5-objects/_navbar.scss
+.navbar {
+  height: 60px;
+  padding: 10px;
+  // ...
+}
+
+// 6-components/_header-nav.scss
+.header-nav {
+  background-color: red
+}
+
+// 6-components/_footer-nav.scss
+.footer-nav {
+  background-color: green;
+}
+
+// index.html
+<div class="header-nav navbar">
+  <!-- ... -->
+</div>
+
+<div class="footer-nav navbar">
+  <!-- ... -->
+</div>
+```
+
+One thing to note about the 'Good' example is that adding modifiers can quickly build up and make a single component overly complex. If this looks like it could happen, it may be best splitting the component up into multiple components like in the 'Better' example.
 
 Both of the above examples work well because no component depends on another. This is not to say components can't be nested, but a single element shouldn't have two different components classes assigned to it. 
 
