@@ -23,17 +23,17 @@ ITCSS is a certain way of structuring Sass (or css) files to minimise rewriting/
 ![Specificity triangle](http://i.imgur.com/okdOFdK.png)
 
 At the top, far-reaching rules (unclassed selectors) e.g.
-```
+``` sass
 body { font-family: Helvetica, Arial, sans-serif }
 ```
 
 Further down the list, less specific rules will come into place (classed selectors) e.g.
-```
+``` sass
 .component { background-color: red }
 ```
 
 And at the bottom of the list, very specific rules are placed (classed selectors, !important can be used) e.g.
-```
+``` sass
 .bg--alpha { background-color: green }
 ```
 
@@ -53,7 +53,7 @@ The full Sass structure looks like the following:
 Site-wide variables such as margin sizes, color schemes, font families/sizes etc. should go in here. There should be minimal 'Magic Numbers' throughout the code. **Note:** These settings are for site-wide variables. Component specific settings should go at the top of the component's file.
 
 Example Structure:
-```
+``` sass
 1-settings
   _breakpoints.scss
   _fonts.scss
@@ -64,7 +64,7 @@ Example Structure:
 Keep variable names ambiguous to prevent refactoring code in the future.
 
 ##### Bad
-```
+``` sass
 // 1-settings/pallete.scss
 $red: #ff2134; // Site's primary theme color
 // ...
@@ -77,7 +77,7 @@ $red: #ff2134; // Site's primary theme color
 If we want to change the site's primary theme colour to green, we'll need to change it in the settings file, as well as the components file (and all other files it's used in.)
 
 ##### Good
-```
+``` sass
 // 1-settings/pallete.scss
 $red: #ff2134; // Use concrete names to describe variables that won't change
 $palette--primary: $red; // Use ambiguous names for variables that may change, and that are used throughout the site
@@ -93,7 +93,7 @@ This way may seem more complex than the first, but it means if we want to change
 
 #### Variable units
 Another point to make here is all sizes should be stated in px, but later converted to em/rem with a Sass function. e.g.
-```
+``` sass
 // 1-settings/content-structure.scss
 $base-spacing-unit: 20px;
 // ...
@@ -114,7 +114,7 @@ Using pixels allows us to match designs with greater detail and will keep any ma
 Self explanatory; keep any mixins/functions in here. High up in the list as these tools will be used throughout the rest of the Sass.
 
 Example Structure:
-```
+``` sass
 2-tools
   _media-queries.scss
   _units.scss
@@ -124,7 +124,7 @@ Example Structure:
 Generally 'set and forget' type rules will go in here, e.g. normalize, clearfix, *{}
 
 Example Structure:
-```
+``` sass
 3-generic
   _clearfix.scss
   _generic.scss
@@ -135,7 +135,7 @@ Example Structure:
 Site-wide rules should be set here. A general rule here is there should only be tag selectors, no class selectors.
 
 Example Structure:
-```
+``` sass
 4-base
   _fonts.scss
   _global.scss
@@ -143,7 +143,7 @@ Example Structure:
 ```
 
 Example rules: 
-```
+``` sass
 // 4-base/_global.scss
 html{
 	font-family: $base-font-family;
@@ -178,7 +178,7 @@ h1, h2, h3, h4, h5, h6 {
 Reusable objects should be placed here, generally layout structures. **No cosmetic styling** should go in here. When looking through a design, try to spot layout patterns being reused (even if they don't look the same aesthetically) and build them here. Modify the look of these seperately later in the components section (see [my example](#example) below). 
 
 Example Structure:
-```
+``` sass
 5-objects
   _grids.scss
   _media.scss
@@ -186,7 +186,7 @@ Example Structure:
 ```
 
 Example rules: 
-```
+``` sass
 // _media.scss
 .media{
     @extend .cf;
@@ -214,7 +214,7 @@ In theory, once an object is made here, it should rarely need edited again.
 Chunks of UI styling go here. This section may grow quite large depending on the complexity of the site, therefore subfolders may be used to group certain files (**Note:** Caution should be exercised here as components should be modular enough to be reused throughout the site. Don't store something in a 'header' folder if it can also be used in the footer). A 'templates' folder may also be used to seperate page styling from other modules. 
 
 Example Structure:
-```
+``` sass
 6-components
   _breadcrumbs.scss
   header
@@ -228,7 +228,7 @@ Example Structure:
 **Note:** Components may depend on objects to complete the style, but two components should *rarely* rely on each other as they should be kept as completely seperate entities. If you find that you can extend one component to create a new but similar one, consider refactoring the component into an object which can be reused and later embellished in the component. Alternatively, try combining the components into one and using modifier flags ('.component**--alt-style**') to differentiate.
 
 ##### Bad
-```
+``` sass
 // 6-components/header-navbar.scss
 .header-navbar {
   height: 60px;
@@ -245,7 +245,7 @@ Example Structure:
 ```
 
 ##### Good
-```
+``` sass
 // 6-components/navbar.scss
 .navbar {
   height: 60px;
@@ -263,7 +263,7 @@ Example Structure:
 ```
 
 ##### Better
-```
+``` sass
 // 5-objects/_navbar.scss
 .navbar {
   height: 60px;
@@ -299,7 +299,7 @@ Both of the above examples work well because no component depends on another. Th
 This is the highest specificity section, generally used for helper classes. It's fine to used !important in here, although if the rest of the Sass has been properly following the ITCSS structure, it should be unnecessary.
 
 Example Structure:
-```
+``` sass
 7-trumps
   _helper.scss
   _palette.scss
@@ -320,7 +320,7 @@ Since this file is at the very bottom of the list, adding the '.bg--alpha' class
 
 ## Example
 
-```
+``` sass
 // index.html
 <div class="hor-list breadcrumbs">
   <div class="hor-list__item breadcrumbs__item">Link 1</div>
@@ -364,7 +364,7 @@ Note that '.list-hor' has no cosmetic styling (color, font-size etc), while '.br
 #### Avoiding @extend
 In the above example you'll notice I entered two classes in the html markup, 'list-hor' and 'breadcrumb'. This could have been achieved by entering only the 'breadcrumb' and then extending the 'list-hor' class within Sass. e.g.
 
-```
+``` sass
 .breadcrumb {
   @extend .list-hor;
   background-color: #000;
@@ -375,7 +375,7 @@ In the above example you'll notice I entered two classes in the html markup, 'li
 There are multiple reasons to avoid this:
 
 1. By extending .list-hor, the .breadcrumb class is being hoisted up next to .list-hor...
-  ```
+  ``` sass
   // compiled css
   .list-hor, .breadcrumbs {/*...*/}
   ```
@@ -387,7 +387,7 @@ There are multiple reasons to avoid this:
 Classes should be used to style every element where possible. Sass makes it very easy to nest rules within each other, causing unnecessary specificity. Avoid this unless you have no control over the markup.
 
 ##### Bad
-```
+``` sass
 .sidebar-nav{
   // styling
   
@@ -397,7 +397,7 @@ Classes should be used to style every element where possible. Sass makes it very
 }
 ```
 ##### Good
-```
+``` sass
 .sidebar-nav{
   // styling
 }
@@ -407,7 +407,7 @@ Classes should be used to style every element where possible. Sass makes it very
 ```
 
 If you must nest tag selectors within a class, try not to be too broad with your selectors, like the following:
-```
+``` sass
 .header{
   a {
     color: red;
@@ -425,7 +425,7 @@ To give an example, take the following mocked up 'article-list' widget.
 
 The Sass code for this looks like the following:
 
-```
+``` sass
 // core.stv.tv/public/assets/source/widgets/article-list.scss
 
 // naming convention to be determined
