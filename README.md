@@ -66,7 +66,7 @@ Keep variable names ambiguous to prevent refactoring code in the future.
 ##### Bad
 ```
 // 1-settings/pallete.scss
-$red: #ff2134; // Sites primary theme color
+$red: #ff2134; // Site's primary theme color
 // ...
 
 // 6-components/puff.scss
@@ -74,7 +74,7 @@ $red: #ff2134; // Sites primary theme color
   font-color: $red;
 }
 ```
-If we want to change the sites primary theme colour to green, we'll need to change it in the settings file, as well as the components file (and all other files it's used in.)
+If we want to change the site's primary theme colour to green, we'll need to change it in the settings file, as well as the components file (and all other files it's used in.)
 
 ##### Good
 ```
@@ -89,7 +89,7 @@ $puff-font-color: $palette--primary !default;
   font-color: $puff-font-color;
 }
 ```
-This way may seem more complex than the first, but it means if we want to change the sites primary theme colour to green we'll only need to change it once within the settings file. This gives us a lot more flexibility.
+This way may seem more complex than the first, but it means if we want to change the site's primary theme colour to green we'll only need to change it once within the settings file. This gives us a lot more flexibility.
 
 #### Variable units
 Another point to make here is all sizes should be stated in px, but later converted to em/rem with a Sass function. e.g.
@@ -478,13 +478,13 @@ $article-list__img-width: 100px;
 }
 
 ```
-This additional code can transform the standard style to something like this ![Themed article-list style](http://i.imgur.com/ybXmCiD.png)
+This additional code can transform the standard style into something completely new, with minimal additional code, keeping our codebase DRY and modular. ![Themed article-list style](http://i.imgur.com/ybXmCiD.png)
 
-To clarify, our local sites widget scss file would take on the following structure:
-- Settings relevant to the sites theme
+To clarify, our local site's widget scss file would take on the following structure:
+- Settings relevant to the site's theme
 - Import the standard widget style, which contains !default variables
 - If necessary, list additional or overwritten rules for the widget
 
 If the widget styling is entirely different to the original style, there's obviously no need to import the original style. It may be a good idea to implement multiple standard 'views' for the widget, for example 'article-list--vert.scss' and 'article-list--hor.scss', then import the most relevant standard file.
 
-**Note:** Using global/widget files would mean creating a standard file and almost never editing it again, as it will have a knock-on effect on multiple sites. Any changes to a rule in a global/widget file for a new site should be made by using the process above, and not directly to the original file. If the new site project is the first to use a certain widget, create it in the widgets folder so it can be reused, and link to it in the sites file like above.
+**Note:** Using global/widget files would mean creating a standard file and almost never editing it again, as it will have a knock-on effect on multiple sites. Any changes to a rule in a global/widget file for a new site should be made by using the process above, and not directly to the original file. If the new site project is the first to use a certain widget, create it in the widgets folder so it can be reused, and link to it in the site's file like above.
