@@ -83,8 +83,9 @@ $palette--primary: $red;
 // ...
 
 // 6-components/puff.scss
+$puff-font-color: $palette--primary;
 .puff{
-  font-color: $palette--primary;
+  font-color: $puff-font-color;
 }
 ```
 
