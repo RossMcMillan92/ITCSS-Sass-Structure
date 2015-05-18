@@ -61,7 +61,7 @@ Example Structure:
 #### Variable names
 Avoid explicitly naming variables to avoid refactoring code in the future. e.g.
 
-#### Bad
+##### Bad
 ```
 // 1-settings/pallete.scss
 $red: #ff2134;
@@ -73,7 +73,7 @@ $red: #ff2134;
 }
 ```
 
-#### Good
+##### Good
 ```
 // 1-settings/pallete.scss
 $red: #ff2134;
