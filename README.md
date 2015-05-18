@@ -417,13 +417,13 @@ If you must nest tag selectors within a class, try not to be too broad with your
 The rule above will affect *all links in the header*. Can you guarantee they should all be red? If not, you will now have to write more code to change the other links back possibly causing higher specificity.
 
 ## Using widgets
-At STV we make good use of reusable 'widgets' which allow us to drop in some functionality with minimal effort. To extend this drop-in functionality, we can use certain methods to make use of a standard style, which can be quickly updated and extended in our individual site's Sass codebase.
+At STV we make good use of reusable 'widgets' which allow us to drop in some functionality with minimal effort. To extend this drop-in functionality, we can use certain methods to make use of a 'standard style', which can be quickly updated and extended in our individual site's Sass codebase.
 
 To give an example, take the following mocked up 'article-list' widget. 
 
 ![Default article-list style](http://i.imgur.com/iP9cJcL.png)
 
-The code for this looks like the following
+The Sass code for this looks like the following:
 
 ```
 // core.stv.tv/public/assets/source/widgets/article-list.scss
@@ -460,9 +460,9 @@ $article-list__img-width: 50px !default;
 	}
 
 ```
-Take note of the variables at the top. They are all trailed with !default, which means we can override them. Also notice the if statements in some of the variables, acting like a ternary statement. This allows us to look for a standard variable name and use it if it exists, otherwise a default value is set.
+Take note of the variables at the top. They are all trailed with !default, which means we can override them. Also notice the if statements in some of the variables, acting like a ternary statement. This allows us to look for a standard variable name and use it if it exists in our site's Sass codebase, otherwise a default value is used.
 
-Now, we need to use this widget on our new site and match it to it's theme. Instead of rewriting the styles from scratch, all we need to do is import the standard widget style and change some variables. We can also add some overwritten/additional classes to the end if the standard file can't fully adapt. So the Sass file in our site's codebase looks like:
+Now, we need to use this widget on our new site and match it to it's theme. Our first instinct would be to copy/paste a previous style and hack away, or even just rewrite the style from scratch. But with this method, all we need to do is import the standard widget style and change some variables. We can also add some overwritten/additional classes to the end if the standard file can't fully adapt. So the Sass file in our site's codebase looks like:
 
 ```
 // 6-components/_article-list.scss
@@ -480,7 +480,7 @@ $article-list__img-width: 100px;
 }
 
 ```
-This additional code can quickly transform the standard style into something completely new, with minimal additional code, keeping our codebase DRY and modular. 
+This additional code can quickly transform the standard style into something completely new, with minimal additional code, keeping our global codebase DRY and modular. 
 
 ![Themed article-list style](http://i.imgur.com/ybXmCiD.png)
 
@@ -489,6 +489,6 @@ To clarify, our local site's widget scss file would take on the following struct
 - Import the standard widget style, which contains !default variables
 - If necessary, list additional or overwritten rules for the widget
 
-If the widget styling is entirely different to the original style, there's obviously no need to import the original style. It may be a good idea to implement multiple standard 'views' for the widget, for example 'article-list--vert.scss' and 'article-list--hor.scss', then import the most relevant standard file.
+If the widget styling is entirely different to the standard style, there's obviously no need to import the original file. It may be a good idea to implement multiple standard 'views' for the widget, for example 'article-list--vert.scss' and 'article-list--hor.scss', then import the most relevant standard file.
 
 **Note:** Using global/widget files would mean creating a standard file and almost never editing it again, as it will have a knock-on effect on multiple sites. Any changes to a rule in a global/widget file for a new site should be made by using the process above, and not directly to the original file. If the new site project is the first to use a certain widget, create it in the widgets folder so it can be reused, and link to it in the site's file like above.
