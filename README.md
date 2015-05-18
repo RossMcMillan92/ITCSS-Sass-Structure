@@ -300,7 +300,7 @@ This is the highest specificity section, generally used for helper classes. It's
 
 Example Structure:
 ``` sass
-7-trumps
+// 7-trumps
   _helper.scss
   _palette.scss
 ```
