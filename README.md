@@ -381,7 +381,7 @@ There are multiple reasons to avoid this:
   ```
   This has just broken the ITCSS structure as we now have a component class mixed in with an object class. While this won't be an issue 95% of the time, a complex piece of code may cause specificity issues in later parts of the site. Extending has no real advantages other than arguably being more semantic. If semantics is an issue, an html comment can be left in the markup to explain the used classes.
   
-2. Extending a class with nested rules can and will lots of unnecessary code. ![poorly compiled css](https://pbs.twimg.com/media/B8mlqv_CUAAi7Qg.png:large) Nesting in general should be avoided as much as possible, but if it is necessary, **never** extend it to another class.
+2. Extending a class with nested rules can create lots of unnecessary code. ![poorly compiled css](https://pbs.twimg.com/media/B8mlqv_CUAAi7Qg.png:large) Nesting in general should be avoided as much as possible, but if it is necessary, **never** extend it to another class.
 
 #### Use of classes
 Classes should be used to style every element where possible. Sass makes it very easy to nest rules within each other, causing unnecessary specificity. Avoid this unless you have no control over the markup.
@@ -414,7 +414,7 @@ If you must nest tag selectors within a class, try not to be too broad with your
   }
 }
 ```
-The rule above will affect *all* links in the header. Can you guarantee they should should be red? If not, you will now have to write more code to change the other links back possibly causing higher specificity.
+The rule above will affect *all links in the header*. Can you guarantee they should all be red? If not, you will now have to write more code to change the other links back possibly causing higher specificity.
 
 ## Adapting this structure for STV
 The example code contained within this git works well for a single site where the whole Sass codebase can be kept within the same folder. Since the STV code base will have files spread out over a global folder, widgets folders and the individual sites folder, we need to make some adaptations. I propose heavily using !default variables when creating widgets to maximise reusability and minimise undoing/waste. e.g.
