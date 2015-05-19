@@ -580,3 +580,41 @@ To clarify, our local site's widget scss file would take on the following struct
 If the widget styling is entirely different to the standard style, there's obviously no need to import the original file. It may be a good idea to implement multiple standard 'views' for the widget, for example 'article-list--vert.scss' and 'article-list--hor.scss', then import the most relevant standard file.
 
 **Note:** Using global/widget files would mean creating a standard file and almost never editing it again, as it will have a knock-on effect on multiple sites. Any changes to a rule in a global/widget file for a new site should be made by using the process above, and not directly to the original file. If the new site project is the first to use a certain widget, create it in the widgets folder so it can be reused, and link to it in the site's file like above.
+
+#### Using other global Sass code
+The method above works well for Widgets, but it can also be used for other parts of the Sass code. Take settings files for example, we can have global settings for things like STV's colour scheme, and standard fonts, then include them using the method above and overwriting any differences.
+
+``` sass
+// core.stv.tv/public/assets/source/global/styles/settings/_fonts.scss
+
+$base-font-size: 		16px !default;
+$base-line-height: 		1.6 !default;
+
+$mega-size: 			55px !default;
+$kilo-size:      	   	28px !default;
+
+$h1-size:        	   	50px !default; 
+$h2-size:        	   	25px !default; 
+$h3-size:        	   	20px !default; 
+$h4-size:        	   	17px !default; 
+$h5-size:        	   	15px !default; 
+$h6-size:      	  	   	13px !default; 
+
+$milli-size:   		    	12px !default;
+$micro-size:   		   	10px !default;
+
+$base-font-family: 		"FS Me Web Bold", stv-ssp, Helvetica, Arial, sans-serif !default;
+$base-font-family--secondary:	$base-font-family !default;
+$base-font-family--icons:	'icomoon' !default;
+
+```
+
+``` sass
+// 1-settings/_fonts.scss
+
+@import '#{$path-to-external-sass}/settings/_fonts.scss';
+
+$base-font-family: 		"Open Sans", sans-serif;
+
+```
+Again, this just allows us to keep common styles between sites consistent, modular and DRY.
