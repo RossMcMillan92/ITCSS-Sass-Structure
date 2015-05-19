@@ -603,7 +603,7 @@ $h6-size:      	  	   	13px !default;
 $milli-size:   		   	12px !default;
 $micro-size:   		   	10px !default;
 
-$base-font-family: 			"FS Me Web Bold", stv-ssp, Helvetica, Arial, sans-serif !default;
+$base-font-family: 				"FS Me Web Bold", stv-ssp, Helvetica, Arial, sans-serif !default;
 $base-font-family--secondary:	$base-font-family !default;
 $base-font-family--icons:		'icomoon' !default;
 
