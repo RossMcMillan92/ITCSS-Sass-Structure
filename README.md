@@ -468,16 +468,25 @@ Trying to overwrite the padding won't work because '.blocklist li' has a higher 
 ##### Good
 ``` sass
 // 5-objects/_blocklist.scss
-.block-list{
-    padding: 0;
-    margin: 0;
-    list-style: none;
+.block-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
-    .block-list__item{
-        display: inline-block;
-        padding: 10px;
-    }
+  .block-list__item {
+    display: inline-block;
+    padding: 10px;
+  }
+    
+// 6-components/_nav.scss
+.nav {
+  
+}
+  .nav__item{
+    padding: 20px; // Works great!
+  }
 ```
+The padding can now be changed because '.block-list__item' and '.nav__item' now have the same specificity (i.e. one class). '.nav__item' will overwrite because it's a component and therefore exists later in the compiled css.
 
 If you must nest tag selectors within a class, try not to be too broad with your selectors, like the following:
 ``` sass
