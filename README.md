@@ -82,7 +82,7 @@ If we want to change the site's primary theme colour to green, we'll need to cha
 ``` sass
 // 1-settings/pallete.scss
 $red: #ff2134; // Use concrete names to describe variables that won't change
-$palette--primary: $red; // Use ambiguous names for variables that may change, and that are used throughout the site
+$palette--primary: $red; // Use ambiguous names for variables that may change, and that are used throughout the codebase
 // ...
 
 // 6-components/puff.scss
