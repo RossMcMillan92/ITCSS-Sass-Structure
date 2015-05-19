@@ -427,7 +427,7 @@ This outputs to
 ```
 This is fine because all of the grouped classes are related (all buttons, not a mix of objects and components), and the btn modifier classes aren't hoisted away to other parts of the compiled css.
 
-**Note:** '.btn--primary' and '.btn--secondary' extend the silent class '%btn' rather than '.btn'. This is so we can nest the '.btn' class elsewhere without Sass creating extra unneeded code. [Harry Roberts goes into more details about this here](http://csswizardry.com/2014/01/extending-silent-classes-in-sass/). Also read [this article which gives much higher detail on @extend](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/)
+**Note:** '.btn--primary' and '.btn--secondary' extend the silent class '%btn' rather than '.btn'. This is so we can nest the '.btn' class elsewhere without Sass creating extra unneeded code. [Harry Roberts goes into more details about this here](http://csswizardry.com/2014/01/extending-silent-classes-in-sass/). Also read [this article which goes into much higher detail on the use of @extend](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/)
 
 
 
