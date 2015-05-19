@@ -316,7 +316,7 @@ Example rules:
   color: $palette--secondary;
 }
 ```
-Since this file is at the very bottom of the list, adding the '.bg--alpha' class to an element will 'trump' any previously set background-color. (Unless previous rules have a higher specificity, which is why we should strive to use only single classes with a naming convention like BEM. If higher specificity is necessary and we still need to use a trump class, we can safely add !important to the trump rules as there isn't much scope for problems this late on in the file.)
+Since this file is at the very bottom of the list, adding the '.bg--alpha' class to an element will 'trump' any previously set background-color. While we should strive to keep specificity as low as possible, i.e. single class selectors, we will always have cases where nested classes are needed. To allow trumps to work on these, we need to add !important to the trump rules. This should be safe to do as there isn't much scope for problems this late on in the file.
 
 ## Example
 
