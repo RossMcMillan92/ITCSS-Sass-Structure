@@ -324,11 +324,11 @@ Since this file is at the very bottom of the list, adding the '.bg--alpha' class
 
 ``` sass
 // index.html
-<div class="hor-list breadcrumbs">
-  <div class="hor-list__item breadcrumbs__item">Link 1</div>
-  <div class="hor-list__item breadcrumbs__item">Link 2</div>
-  <div class="hor-list__item breadcrumbs__item">Link 3</div>
-</div>
+<ul class="hor-list breadcrumbs">
+  <li class="hor-list__item breadcrumbs__item">Link 1</li>
+  <li class="hor-list__item breadcrumbs__item">Link 2</li>
+  <li class="hor-list__item breadcrumbs__item">Link 3</li>
+</ul>
 
 // 5-objects/lists.scss
 .list-hor{
@@ -459,9 +459,9 @@ The above code gives the 'li' element a high specificity. This means when I come
   }
   
 // index.html
-<div class="nav block-list">
-  <div class="nav__item">Item</div>
-</div>
+<ul class="nav block-list">
+  <li class="nav__item">Item</li>
+</ul>
 ```
 Trying to overwrite the padding won't work because '.blocklist li' has a higher specificity than '.nav__item'.
 
