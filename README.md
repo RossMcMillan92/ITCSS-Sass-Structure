@@ -15,6 +15,8 @@ Based on Harry Roberts' concept ITCSS. For a complete overview, watch [this talk
 1. [6. Components](#6-components)
 1. [7. Trumps](#7-trumps)
 1. [Example](#example)
+  - Avoiding @extend
+  - Use of classes
 1. [Using widgets](#using-widgets)
 
 ## Overview
@@ -424,7 +426,7 @@ This outputs to
   background-color: green;
 }
 ```
-This works fine because all the classes are related, and the btn modifier classes aren't hoisted away with other unrelated classes.
+This is fine because all of the grouped classes are related, and the btn modifier classes aren't hoisted away to other parts of the compiled css.
 
 **Note:** '.btn--primary' and '.btn--secondary' extend the silent class '%btn' rather than '.btn'. This is so we can nest the '.btn' class elsewhere without Sass creating extra unneeded code. [Harry Roberts goes into more details about this.](http://csswizardry.com/2014/01/extending-silent-classes-in-sass/).
 
