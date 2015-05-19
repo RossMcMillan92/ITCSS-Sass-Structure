@@ -435,22 +435,48 @@ Classes should be used to style every element where possible. Sass makes it very
 
 ##### Bad
 ``` sass
-.sidebar-nav{
-  // styling
-  
-  li{
-    // styling
-  }
+// 5-objects/_blocklist.scss
+.block-list{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    
+    li{
+      display: inline-block;
+      padding: 10px;
+    }
 }
 ```
+The above code gives the 'li' element a high specificity. This means when I come to reuse that code for a component, I'll have to create more high spcificity rules, or use !important.
+
+``` sass
+// 6-components/_nav.scss
+.nav {
+  
+}
+  .nav__item{
+    padding: 20px; // won't work
+  }
+  
+// index.html
+<div class="nav block-list">
+  <div class="nav__item">Item</div>
+</div>
+```
+Trying to overwrite the padding won't work because '.blocklist li' has a higher specificity than '.nav__item'.
+
 ##### Good
 ``` sass
-.sidebar-nav{
-  // styling
+// 5-objects/_blocklist.scss
+.block-list{
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
-  .sidebar-nav__item{
-    // styling
-  }
+    .block-list__item{
+        display: inline-block;
+        padding: 10px;
+    }
 ```
 
 If you must nest tag selectors within a class, try not to be too broad with your selectors, like the following:
