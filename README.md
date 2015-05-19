@@ -387,6 +387,7 @@ There are multiple reasons to avoid this:
   
 2. Extending a class with nested rules can create lots of unnecessary code. ![poorly compiled css](https://pbs.twimg.com/media/B8mlqv_CUAAi7Qg.png:large) Nesting in general should be avoided as much as possible, but if it is necessary, **never** extend it to another class. 
 
+[Harry has an in-depth article on avoiding extend](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/)
 
 ##### When it makes sense to use @extend
 @extend can be used when related classes share the same rules, all within the same file:
