@@ -492,7 +492,7 @@ Trying to overwrite the padding won't work because '.blocklist li' has a higher 
     padding: 20px; // Works!
   }
 ```
-The padding can now be changed because '.block-list__item' and '.nav__item' now have the same specificity (i.e. one class). '.nav__item' will overwrite because it's a component and therefore exists later in the compiled css.
+The padding can now be changed because '.block-list__item' and '.nav__item' have the same specificity (i.e. one class). '.nav__item' will overwrite because it's a component and therefore exists later in the compiled css.
 
 If you don't have access to the markup and therefore must nest selectors to target elements, try not to be too broad with your selectors, like the following:
 ``` sass
