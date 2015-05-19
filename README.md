@@ -31,7 +31,7 @@ body { font-family: Helvetica, Arial, sans-serif }
 
 Further down the list, less specific rules will come into place (classed selectors) e.g.
 ``` sass
-.component { background-color: red }
+.component { background-color: red; padding: 10px; }
 ```
 
 And at the bottom of the list, very specific rules are placed (classed selectors, !important can be used) e.g.
