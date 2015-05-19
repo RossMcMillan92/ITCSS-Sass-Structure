@@ -450,20 +450,21 @@ Classes should be used to style every element where possible. Sass makes it very
 The above code gives the 'li' element a high specificity. This means when I come to reuse that code for a component, I'll have to create more high spcificity rules, or use !important.
 
 ``` sass
-// 6-components/_nav.scss
-.nav {
-  
-}
-  .nav__item{
-    padding: 20px; // won't work
-  }
-  
 // index.html
 <ul class="nav block-list">
   <li class="nav__item">Item</li>
 </ul>
+
+// 6-components/_nav.scss
+.nav {
+  
+}
+  .nav__item {
+    padding: 20px; // won't work
+    padding: 20px !important; // will work but causes even higher specificity
+  }
 ```
-Trying to overwrite the padding won't work because '.blocklist li' has a higher specificity than '.nav__item'.
+Trying to overwrite the padding won't work because '.blocklist li' has a higher specificity than '.nav__item', therefore !important is needed.
 
 ##### Good
 ``` sass
@@ -483,12 +484,12 @@ Trying to overwrite the padding won't work because '.blocklist li' has a higher 
   
 }
   .nav__item{
-    padding: 20px; // Works great!
+    padding: 20px; // Works!
   }
 ```
 The padding can now be changed because '.block-list__item' and '.nav__item' now have the same specificity (i.e. one class). '.nav__item' will overwrite because it's a component and therefore exists later in the compiled css.
 
-If you must nest tag selectors within a class, try not to be too broad with your selectors, like the following:
+If you don't have access to the markup and therefore must nest selectors to target elements, try not to be too broad with your selectors, like the following:
 ``` sass
 .header{
   a {
