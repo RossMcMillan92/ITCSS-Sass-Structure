@@ -517,11 +517,11 @@ The Sass code for this looks like the following:
 // core.stv.tv/public/assets/source/widgets/article-list.scss
 
 // naming convention to be determined
-$article-list__border-color: #ccc !default;
-$article-list__spacing: if(variable-exists(base-spacing-unit), $base-spacing-unit / 2, 10px) !default;
-$article-list__bg-color: #fff !default;
-$article-list__font-color: if(variable-exists(palette--primary), nth($palette--primary, 2), red) !default;
-$article-list__img-width: 50px !default;
+$article-list__border-color: 	#ccc !default;
+$article-list__spacing: 	if(variable-exists(base-spacing-unit), $base-spacing-unit / 2, 10px) !default;
+$article-list__bg-color: 	#fff !default;
+$article-list__font-color: 	if(variable-exists(palette--primary), nth($palette--primary, 2), red) !default;
+$article-list__img-width: 	50px !default;
 
 .article-list {
 	border: solid 1px $article-list__border-color;
@@ -555,11 +555,11 @@ Now, we need to use this widget on our new site and match it to it's theme. Our 
 ``` sass
 // 6-components/_article-list.scss
 
-$article-list__border-color: #555;
-$article-list__spacing: 20px;
-$article-list__bg-color: #222;
-$article-list__font-color: #fff;
-$article-list__img-width: 100px;
+$article-list__border-color: 	#555;
+$article-list__spacing: 	20px;
+$article-list__bg-color: 	#222;
+$article-list__font-color: 	#fff;
+$article-list__img-width: 	100px;
 
 @import 'external-widget';
 
