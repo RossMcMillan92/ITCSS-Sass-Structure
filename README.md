@@ -387,8 +387,6 @@ There are multiple reasons to avoid this:
   
 2. Extending a class with nested rules can create lots of unnecessary code. ![poorly compiled css](https://pbs.twimg.com/media/B8mlqv_CUAAi7Qg.png:large) Nesting in general should be avoided as much as possible, but if it is necessary, **never** extend it to another class. 
 
-[Harry has an in-depth article on avoiding extend](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/)
-
 ##### When it makes sense to use @extend
 @extend can be used when related classes share the same rules, all within the same file:
 
@@ -430,6 +428,8 @@ This outputs to
 This is fine because all of the grouped classes are related (all buttons, not a mix of objects and components), and the btn modifier classes aren't hoisted away to other parts of the compiled css.
 
 **Note:** '.btn--primary' and '.btn--secondary' extend the silent class '%btn' rather than '.btn'. This is so we can nest the '.btn' class elsewhere without Sass creating extra unneeded code. [Harry Roberts goes into more details about this here.](http://csswizardry.com/2014/01/extending-silent-classes-in-sass/)
+
+[Harry goes into much higher detail on @extend](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/)
 
 #### Use of classes
 Classes should be used to style every element where possible. Sass makes it very easy to nest rules within each other, causing unnecessary specificity. Avoid this unless you have no control over the markup.
