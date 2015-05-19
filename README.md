@@ -468,6 +468,11 @@ Trying to overwrite the padding won't work because '.blocklist li' has a higher 
 
 ##### Good
 ``` sass
+// index.html
+<ul class="nav block-list">
+  <li class="nav__item block-list__item">Item</li>
+</ul>
+
 // 5-objects/_blocklist.scss
 .block-list {
   padding: 0;
