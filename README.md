@@ -383,7 +383,7 @@ There are multiple reasons to avoid this:
   // compiled css
   .list-hor, .breadcrumbs {/*...*/}
   ```
-  We now have unrelated rules scattered across the compiled css file. This has also just broken the IT structure as we now have a component class mixed in with an object class. While this won't be an issue 95% of the time, a complex piece of code may cause issues in other parts of the Sass code.
+  We now have unrelated rules scattered across the compiled css file which has broken the IT structure as we now have a component class mixed in with an object class. While this won't be an issue 95% of the time, a complex piece of code may cause unexpected issues elsewhere.
   
 2. Extending a class with nested rules can create lots of unnecessary code. ![poorly compiled css](https://pbs.twimg.com/media/B8mlqv_CUAAi7Qg.png:large) Nesting in general should be avoided as much as possible, but if it is necessary, **never** extend it to another class. 
 
@@ -426,7 +426,7 @@ This outputs to
   background-color: green;
 }
 ```
-This is fine because all of the grouped classes are related, and the btn modifier classes aren't hoisted away to other parts of the compiled css.
+This is fine because all of the grouped classes are related (all buttons, not a mix of objects and components), and the btn modifier classes aren't hoisted away to other parts of the compiled css.
 
 **Note:** '.btn--primary' and '.btn--secondary' extend the silent class '%btn' rather than '.btn'. This is so we can nest the '.btn' class elsewhere without Sass creating extra unneeded code. [Harry Roberts goes into more details about this here.](http://csswizardry.com/2014/01/extending-silent-classes-in-sass/)
 
