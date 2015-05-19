@@ -20,7 +20,7 @@ Based on Harry Roberts' concept ITCSS. For a complete overview, watch [this talk
 1. [Using widgets](#using-widgets)
 
 ## Overview
-ITCSS is a certain way of structuring Sass (or css) files to minimise rewriting/undoing code, and to maximise scalability. IT stands for Inverted Triangle, which is the basis of the code structure. In our master Sass file, rules which broadly affect elements on the page are imported at the top. As specificity grows, the further down the file the rules will be imported. 
+ITCSS is a certain way of structuring Sass files to minimise rewriting/undoing code, and to maximise scalability. IT stands for Inverted Triangle, which is the basis of the code structure. In our master Sass file, rules which broadly affect elements on the page are imported at the top. As specificity grows, the further down the file the rules will be imported. 
 
 ![Specificity triangle](http://i.imgur.com/okdOFdK.png)
 
