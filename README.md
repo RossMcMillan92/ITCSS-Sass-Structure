@@ -113,7 +113,7 @@ $puff-margin-bottom: $base-spacing-unit !default;
 Using pixels allows us to match designs with greater detail and will keep any math as simple as possible. Converting to em/rem when it's finally needed will keep the sites responsive and accessible.
 
 ## 2. Tools
-Self explanatory; keep any mixins/functions in here. High up in the list as these tools will be used throughout the rest of the Sass.
+Self explanatory; keep any mixins/functions in here. High up in the list as these tools will be used throughout the rest of the Sass codebase.
 
 Example Structure:
 ``` 
