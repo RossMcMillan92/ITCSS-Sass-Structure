@@ -296,7 +296,7 @@ One thing to note about the 'Good' example is that adding modifiers can quickly 
 Both of the above examples work well because no component depends on another. This is not to say components can't be nested, but a single element shouldn't have two different components classes assigned to it. 
 
 ## 7. Trumps
-This is the highest specificity section, generally used for helper classes. It's fine to used !important in here, although if the rest of the Sass has been properly following the ITCSS structure, it should be unnecessary.
+Rules that are added at the very end, generally used for helper classes.
 
 Example Structure:
 ``` 
@@ -316,7 +316,7 @@ Example rules:
   color: $palette--secondary;
 }
 ```
-Since this file is at the very bottom of the list, adding the '.bg--alpha' class to an element will 'trump' any previously set background-color. While we should strive to keep specificity as low as possible, i.e. single class selectors, we will always have cases where nested classes are needed. To allow trumps to work on these, we need to add !important to the trump rules. This should be safe to do as there isn't much scope for problems this late on in the file.
+Since this file is at the very bottom of the list, adding the '.bg--alpha' class to an element will 'trump' any previously set background-color. While we should strive to keep specificity as low as possible, i.e. single class selectors via BEM, we will always have cases where nested classes are needed. To allow trumps to work on these, we need to add !important to the trump rules. This should be safe to do as there isn't much scope for problems this late on in the file.
 
 ## Example
 
