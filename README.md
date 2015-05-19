@@ -428,7 +428,7 @@ This outputs to
 ```
 This is fine because all of the grouped classes are related, and the btn modifier classes aren't hoisted away to other parts of the compiled css.
 
-**Note:** '.btn--primary' and '.btn--secondary' extend the silent class '%btn' rather than '.btn'. This is so we can nest the '.btn' class elsewhere without Sass creating extra unneeded code. [Harry Roberts goes into more details about this here.](http://csswizardry.com/2014/01/extending-silent-classes-in-sass/).
+**Note:** '.btn--primary' and '.btn--secondary' extend the silent class '%btn' rather than '.btn'. This is so we can nest the '.btn' class elsewhere without Sass creating extra unneeded code. [Harry Roberts goes into more details about this here.](http://csswizardry.com/2014/01/extending-silent-classes-in-sass/)
 
 #### Use of classes
 Classes should be used to style every element where possible. Sass makes it very easy to nest rules within each other, causing unnecessary specificity. Avoid this unless you have no control over the markup.
