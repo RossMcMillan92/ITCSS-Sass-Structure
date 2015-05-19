@@ -53,7 +53,7 @@ The full Sass structure looks like the following:
 Site-wide variables such as margin sizes, color schemes, font families/sizes etc. should go in here. There should be minimal 'Magic Numbers' throughout the code. **Note:** These settings are for site-wide variables. Component specific settings should go at the top of the component's file.
 
 Example Structure:
-``` sass
+``` 
 1-settings
   _breakpoints.scss
   _fonts.scss
@@ -114,7 +114,7 @@ Using pixels allows us to match designs with greater detail and will keep any ma
 Self explanatory; keep any mixins/functions in here. High up in the list as these tools will be used throughout the rest of the Sass.
 
 Example Structure:
-``` sass
+``` 
 2-tools
   _media-queries.scss
   _units.scss
@@ -124,7 +124,7 @@ Example Structure:
 Generally 'set and forget' type rules will go in here, e.g. normalize, clearfix, *{}
 
 Example Structure:
-``` sass
+``` 
 3-generic
   _clearfix.scss
   _generic.scss
@@ -135,7 +135,7 @@ Example Structure:
 Site-wide rules should be set here. A general rule here is there should only be tag selectors, no class selectors.
 
 Example Structure:
-``` sass
+``` 
 4-base
   _fonts.scss
   _global.scss
@@ -178,7 +178,7 @@ h1, h2, h3, h4, h5, h6 {
 Reusable objects should be placed here, generally layout structures. **No cosmetic styling** should go in here. When looking through a design, try to spot layout patterns being reused (even if they don't look the same aesthetically) and build them here. Modify the look of these seperately later in the components section (see [my example](#example) below). 
 
 Example Structure:
-``` sass
+``` 
 5-objects
   _grids.scss
   _media.scss
@@ -214,7 +214,7 @@ In theory, once an object is made here, it should rarely need edited again.
 Chunks of UI styling go here. This section may grow quite large depending on the complexity of the site, therefore subfolders may be used to group certain files (**Note:** Caution should be exercised here as components should be modular enough to be reused throughout the site. Don't store something in a 'header' folder if it can also be used in the footer). A 'templates' folder may also be used to seperate page styling from other modules. 
 
 Example Structure:
-``` sass
+``` 
 6-components
   _breadcrumbs.scss
   header
@@ -299,14 +299,14 @@ Both of the above examples work well because no component depends on another. Th
 This is the highest specificity section, generally used for helper classes. It's fine to used !important in here, although if the rest of the Sass has been properly following the ITCSS structure, it should be unnecessary.
 
 Example Structure:
-``` sass
+``` 
 // 7-trumps
   _helper.scss
   _palette.scss
 ```
 
 Example rules: 
-```
+``` sass
 // _palette.scss
 .bg--alpha {
   background-color: $palette--primary;
