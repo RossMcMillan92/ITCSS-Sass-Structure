@@ -362,7 +362,9 @@ Since this file is at the very bottom of the list, adding the '.bg--alpha' class
 Note that '.list-hor' has no cosmetic styling (color, font-size etc), while '.breadcrumb' does. This allows us to reuse '.list-hor' without having to unnecessarily *undo* any of it's rules. Also note that the padding on '.list-hor' is being overwritten by the '.breadcrumb' class. Since our component comes after the object in the master Sass file, the '.breadcrumb' rules will overwrite the '.list-hor' rules without any hassle with specificity (i.e. no need for !important).
 
 #### Avoiding @extend
-In the above example you'll notice I entered two classes in the html markup, 'list-hor' and 'breadcrumb'. This could have been achieved by entering only the 'breadcrumb' and then extending the 'list-hor' class within Sass. e.g.
+[This article by Oliver Jash](http://oliverjash.me/2012/09/07/methods-for-modifying-objects-in-oocss.html) explains clearly the cons of using @extend, instead of defering this functionality to the HTML. I'll highlight a few reasons not to use @extend.
+
+My example above could have been achieved by entering only the 'breadcrumb' class in the markup and then extending the 'list-hor' class within Sass. e.g.
 
 ``` sass
 .breadcrumb {
@@ -379,9 +381,32 @@ There are multiple reasons to avoid this:
   // compiled css
   .list-hor, .breadcrumbs {/*...*/}
   ```
-  This has just broken the ITCSS structure as we now have a component class mixed in with an object class. While this won't be an issue 95% of the time, a complex piece of code may cause specificity issues in later parts of the site. Extending has no real advantages other than arguably being more semantic. If semantics is an issue, an html comment can be left in the markup to explain the used classes.
+  We now have unrelated rules scattered across the compiled css file. This has also just broken the IT structure as we now have a component class mixed in with an object class. While this won't be an issue 95% of the time, a complex piece of code may cause issues in other parts of the Sass code.
   
-2. Extending a class with nested rules can create lots of unnecessary code. ![poorly compiled css](https://pbs.twimg.com/media/B8mlqv_CUAAi7Qg.png:large) Nesting in general should be avoided as much as possible, but if it is necessary, **never** extend it to another class.
+2. Extending a class with nested rules can create lots of unnecessary code. ![poorly compiled css](https://pbs.twimg.com/media/B8mlqv_CUAAi7Qg.png:large) Nesting in general should be avoided as much as possible, but if it is necessary, **never** extend it to another class. 
+
+
+##### When it makes sense to use @extend
+@extend can be used when related classes share the same rule, generally only within the same file:
+
+``` sass
+.btn,
+%btn {
+  display: inline-block;
+  padding: 10px;
+}
+
+.btn--primary {
+  @extend %btn;
+  background-color: red;
+}
+
+.btn--secondary {
+  @extend %btn;
+  background-color: green;
+}
+```
+**Note:** '.btn--primary' and '.btn--secondary' extend the silent class '%btn' rather than '.btn'. This is so we can nest the '.btn' class elsewhere without Sass creating extra unneeded code. [Harry Roberts goes into more details about this.](http://csswizardry.com/2014/01/extending-silent-classes-in-sass/).
 
 #### Use of classes
 Classes should be used to style every element where possible. Sass makes it very easy to nest rules within each other, causing unnecessary specificity. Avoid this unless you have no control over the markup.
