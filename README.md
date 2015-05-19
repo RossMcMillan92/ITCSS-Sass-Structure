@@ -406,6 +406,26 @@ There are multiple reasons to avoid this:
   background-color: green;
 }
 ```
+
+This outputs to 
+``` sass
+.btn,
+.btn--primary,
+.btn--secondary {
+  display: inline-block;
+  padding: 10px;
+}
+
+.btn--primary {
+  background-color: red;
+}
+
+.btn--secondary {
+  background-color: green;
+}
+```
+This works fine because all the classes are related, and the btn modifier classes aren't hoisted away with other unrelated classes.
+
 **Note:** '.btn--primary' and '.btn--secondary' extend the silent class '%btn' rather than '.btn'. This is so we can nest the '.btn' class elsewhere without Sass creating extra unneeded code. [Harry Roberts goes into more details about this.](http://csswizardry.com/2014/01/extending-silent-classes-in-sass/).
 
 #### Use of classes
