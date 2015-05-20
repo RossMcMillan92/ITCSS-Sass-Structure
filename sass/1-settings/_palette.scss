@@ -4,7 +4,7 @@ $palette--grey-light 			:#fbfbfb;
 $palette--grey-med 				:#f5f5f5;
 $palette--grey-dark 			:#C2C2C2;
 
-/* names allow us to loop and create class names, e.g. .card--alpha, .ui--beta
+/* names allow us to loop and create class names, e.g. .card--alpha, .bg--beta
 ------------------------ */
 $palette--names 				:(
 									'alpha',
@@ -47,5 +47,3 @@ $palette--body-bg 				: #fff;
 $palette--body-text 			: #747474;
 $palette--body-emphasised 		:nth($palette--primary, 1);
 
-// misc
-$palette--beta-text 			: #b9c9db;

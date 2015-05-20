@@ -1,6 +1,7 @@
 /* Lists
 ------------------------ */
-.cleanlist{
+.cleanlist,
+%cleanlist {
     padding: 0;
     margin: 0;
     list-style: none;
@@ -15,14 +16,14 @@
 }
 
 .list-hor{
-    @extend .cleanlist;
+    @extend %cleanlist;
 }
     .list-hor__item{
         display: inline-block;
     }
 
 .list-hor--separated{
-    @extend .cleanlist;
+    @extend %cleanlist;
 }
 
     .list-hor--separated__item{
@@ -46,7 +47,7 @@
     }
 
 .block-list{
-    @extend .cleanlist;
+    @extend %cleanlist;
 }
     .block-list__item{
         display: block;

@@ -22,7 +22,6 @@
 	@import '1-settings/breakpoints';
 	@import '1-settings/content-structure';
 	@import '1-settings/debug';
-
 	@import '1-settings/forms';
 
 
@@ -53,9 +52,6 @@
 	@import '4-base/headings';
 	@import '4-base/shared-margins';
 	@import '4-base/fonts';
-	@import '4-base/paragraphs';
-	@import '4-base/links';
-	@import '4-base/lists';
 	@import '4-base/tables';
 
 
@@ -64,12 +60,9 @@
 ---------------------------------------------- */ 
 
 	@import '5-objects/grids';
-	@import '5-objects/content-section';
 	@import '5-objects/justified-section';
 	@import '5-objects/lists';
-	@import '5-objects/pseudo';
 	@import '5-objects/icons';
-	@import '5-objects/expandable';
 	@import '5-objects/position';
 	@import '5-objects/media';
 	@import '5-objects/text';
@@ -80,23 +73,7 @@
 	6. Components
 ---------------------------------------------- */ 
 
-	@import '6-components/banner';
-	@import '6-components/breadcrumb';
-	@import '6-components/buttons';
-	@import '6-components/custom-dropdown';
-	@import '6-components/footer';
-	@import '6-components/forms';
-	@import '6-components/header';
-	@import '6-components/inner-content';
-	@import '6-components/layout-structure';
-	@import '6-components/lightbox';
-	@import '6-components/pagination';
-	@import '6-components/search-results';
-	@import '6-components/share-popup';
-	@import '6-components/sidebar';
-	@import '6-components/side-menu';
-	@import '6-components/tables';
-	@import '6-components/palette';
+
 
 
 /* ----------------------------------------------

@@ -1,28 +1,33 @@
-%f-thin{
+@function font-primary--thin(){
 	font-family: $base-font-family;
 	font-weight: 100;
 }
 
-%f-light{
+@function font-primary--light(){
 	font-family: $base-font-family;
 	font-weight: 300;
 }
 
-%f-regular{
+@function font-primary--regular(){
 	font-family: $base-font-family;
 	font-weight: 400;
 }
 
-%f-bold{
+@function font-primary--bold(){
 	font-family: $base-font-family;
 	font-weight: 700;
 }
 
-%f-extrabold{
+@function font-primary--extrabold(){
 	font-family: $base-font-family;
 	font-weight: 900;
 }
 
-%f-icon{
+@function font-secondary--regular(){
+	font-family: $base-font-family--secondary;
+	font-weight: 400;
+}
+
+@function font-icon(){
     font-family: $base-font-family--icons;
 }
