@@ -136,7 +136,7 @@ Example Structure:
 ```
 
 ## 4. Base
-Site-wide rules should be set here. A general rule here is there should only be tag selectors, no class selectors.
+Site-wide rules should be set here. A general rule here is there should only be tag selectors, no class selectors (although exceptions can be made.)
 
 Example Structure:
 ``` 
