@@ -480,7 +480,7 @@ To give an example, take the following mocked up 'article-list' widget.
 
 ![Default article-list style](http://i.imgur.com/iP9cJcL.png)
 
-The Sass code for this looks like the following:
+The Sass code for this looks like the following (and it lives elsewhere, linked to by this variable: $path-to-external-sass):
 
 ``` sass
 // core.stv.tv/public/assets/source/widgets/article-list.scss
