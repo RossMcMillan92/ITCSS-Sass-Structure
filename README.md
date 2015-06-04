@@ -1,7 +1,7 @@
 # STV Sass
 Based on Harry Roberts' concept ITCSS. For a complete overview, watch [this talk](https://www.youtube.com/watch?v=1OKZOV-iLj4) and [read these slides](https://speakerdeck.com/dafed/managing-css-projects-with-itcss). This git serves as a working example, however it's not perfect and hasn't been adapted to work with the current STV codebase. Along with a basic introduction to ITCSS, this readme will also contain a few general best practices/methods for working with Sass/css.
 
-*A lot of things discussed here will be common sense and may sound condescending to some, but it's important to write down just to make sure we're all on the same page. There are also some opinionated points which may need to be discussed and ironed out by the team before the system is considered.*
+*A lot of things discussed here will be common sense to some, but it's important to write down just to make sure we're all on the same page. There are also some opinionated points which may need to be discussed and ironed out by the team before the system is considered.*
 
 ## Contents
 1. [Overview](#overview)
@@ -92,6 +92,8 @@ $puff-font-color: $palette--primary !default;
 }
 ```
 This way may seem more complex than the first, but it means if we want to change the site's primary theme colour to green we'll only need to change it once within the settings file. This gives us a lot more flexibility.
+
+**A final naming convention/structure is still to be decided**
 
 #### Variable units
 Another point to make here is all sizes should be stated in px, but later converted to em/rem with a Sass function. e.g.
