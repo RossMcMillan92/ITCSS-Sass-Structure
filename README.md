@@ -69,11 +69,11 @@ Keep variable names ambiguous to prevent refactoring code in the future.
 
 ##### Bad
 ``` sass
-// 1-settings/pallete.scss
+// 1-settings/_pallete.scss
 $red: #ff2134; // Site's primary theme color
 // ...
 
-// 6-components/puff.scss
+// 6-components/_puff.scss
 .puff{
   font-color: $red;
 }
@@ -82,12 +82,12 @@ If we want to change the site's primary theme colour to green, we'll need to cha
 
 ##### Good
 ``` sass
-// 1-settings/pallete.scss
+// 1-settings/_pallete.scss
 $red: #ff2134; // Use concrete names to describe variables that won't change
 $palette--primary: $red; // Use ambiguous names for variables that may change, and that are used throughout the codebase
 // ...
 
-// 6-components/puff.scss
+// 6-components/_puff.scss
 $puff-font-color: $palette--primary !default;
 .puff{
   font-color: $puff-font-color;
@@ -100,11 +100,11 @@ This way may seem more complex than the first, but it means if we want to change
 #### Variable units
 All absolute sizes should be stated in px, but later converted to em/rem with a Sass function. e.g.
 ``` sass
-// 1-settings/content-structure.scss
+// 1-settings/_content-structure.scss
 $base-spacing-unit: 20px;
 // ...
 
-// 6-components/puff.scss
+// 6-components/_puff.scss
 $puff-margin-bottom: $base-spacing-unit !default;
 
 .puff{
@@ -193,7 +193,7 @@ Example Structure:
 
 Example rules: 
 ``` sass
-// _media.scss
+// 5-objects/_media.scss
 .media{
     @extend .cf;
     display:block;
@@ -234,7 +234,7 @@ Example Structure:
 
 ##### Bad
 ``` sass
-// 6-components/header-navbar.scss
+// 6-components/_header-navbar.scss
 .header-navbar {
   height: 60px;
   padding: 10px;
@@ -242,7 +242,7 @@ Example Structure:
   // ...
 }
 
-// 6-components/footer-navbar.scss
+// 6-components/_footer-navbar.scss
 .footer-navbar {
   @extend .header-navbar;
   background-color: green;
@@ -251,7 +251,7 @@ Example Structure:
 
 ##### Good #1
 ``` sass
-// 6-components/navbar.scss
+// 6-components/_navbar.scss
 .navbar {
   height: 60px;
   padding: 10px;
@@ -312,7 +312,7 @@ Example Structure:
 
 Example rules: 
 ``` sass
-// _palette.scss
+// 7-trumps/_palette.scss
 .bg--alpha {
   background-color: $palette--primary;
 }
@@ -333,7 +333,7 @@ Since this file is at the very bottom of the list, adding the '.bg--alpha' class
   <li class="hor-list__item breadcrumbs__item">Link 3</li>
 </ul>
 
-// 5-objects/lists.scss
+// 5-objects/_lists.scss
 .list-hor{
     padding: 0;
     margin: 0;
@@ -343,7 +343,7 @@ Since this file is at the very bottom of the list, adding the '.bg--alpha' class
         display: inline-block;
     }
     
-// 6-components/breadcumbs.scss
+// 6-components/_breadcumbs.scss
 .breadcrumb{
 	background-color: #000;
 	width: 100%;
