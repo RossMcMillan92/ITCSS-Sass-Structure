@@ -179,7 +179,7 @@ h1, h2, h3, h4, h5, h6 {
 ```
 
 ## 5. Objects
-Reusable objects should be placed here, generally layout structures. **No cosmetic styling** should go in here. When looking through a design, try to spot layout patterns being reused (even if they don't look the same cosmetically) and build them here. Modify the look of these seperately later in the components section (see [my example](#example) below). 
+Reusable objects should be placed here, generally layout structures. **No cosmetic styling** should go in here.
 
 Example Structure:
 ``` 
@@ -209,7 +209,7 @@ Example rules:
         overflow:hidden;
     }
 ```
-Since we will be reusing certain components/widgets across many sites with different themes, declaring any cosmetic or unnecessary styles here will inevitably be overwritten, causing waste. To avoid this, use this section to make minimal structures that generally won't change and can be extended across multiple widgets/components/sections. These can be further styled to suit the specific component later in a new file in the components section.
+Since we will be reusing certain components/widgets across many sites with different themes, declaring any cosmetic or unnecessary styles here will inevitably be overwritten, causing waste. To avoid this, use this section to make minimal structures that generally won't change and can be extended across multiple widgets/components/sections. These can be further styled to suit the specific component later in a new file in the components section (see [my example](#example) below). 
 
 In theory, once an object is made here, it should rarely need edited again.
 
