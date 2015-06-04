@@ -20,6 +20,7 @@ Along with a basic introduction to ITCSS, this readme will also contain a few ge
   - Avoiding @extend
   - Use of classes
 1. [Using widgets](#using-widgets)
+1. [Going further](#going-further)
 
 ## Overview
 ITCSS is a certain way of structuring Sass files to minimise rewriting/undoing code, and to maximise scalability. IT stands for Inverted Triangle, which is the basis of the code structure. In our master Sass file, rules which broadly affect elements on the page are imported at the top. As specificity grows, the further down the file the rules will be imported. 
@@ -631,3 +632,6 @@ $base-font-family: 		"Open Sans", sans-serif;
 
 ```
 Again, this just allows us to keep common styles between sites consistent, modular and DRY.
+
+## Going further
+The above structure is exactly that, a structure. It's not a framework, syntax or technology that we need to commit to (with the exception of using Sass [but even that isn't necessary for ITCSS]), it merely allows us to create and grow our Sass codebase with minimal headaches and maximum scalability.
