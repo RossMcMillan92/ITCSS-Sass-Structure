@@ -96,7 +96,7 @@ This way may seem more complex than the first, but it means if we want to change
 **A final naming convention/structure is still to be decided**
 
 #### Variable units
-All sizes should be stated in px, but later converted to em/rem with a Sass function. e.g.
+All absolute sizes should be stated in px, but later converted to em/rem with a Sass function. e.g.
 ``` sass
 // 1-settings/content-structure.scss
 $base-spacing-unit: 20px;
