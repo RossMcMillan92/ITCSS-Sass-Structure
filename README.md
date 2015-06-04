@@ -506,6 +506,8 @@ If you don't have access to the markup and therefore must nest selectors to targ
 The rule above will affect *all links in the header*. Can you guarantee they should all be red? If not, you will now have to write more code to change the other links back possibly causing unnecessary waste and even more high specificity rules.
 
 ## Using widgets
+**This section is merely an idea, and may be unncessary if the team decides so. However, it should be considered as it will keep the codebase DRY and will minimlise the constant rewriting of a commonly used widgets.**
+
 At STV we make good use of reusable 'widgets' which allow us to drop in some functionality with minimal effort. To extend this drop-in functionality, we can use certain methods to make use of a 'standard style', which can be quickly updated and extended in our individual site's Sass codebase.
 
 To give an example, take the following mocked up 'article-list' widget. 
