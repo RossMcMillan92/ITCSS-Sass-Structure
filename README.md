@@ -384,7 +384,7 @@ There are multiple reasons to avoid this:
   // compiled css
   .list-hor, .breadcrumbs {/*...*/}
   ```
-  We now have unrelated rules scattered across the compiled css file which has broken the IT structure as we now have a component class mixed in with an object class. While this won't be an issue 95% of the time, a complex piece of code may cause unexpected issues elsewhere.
+  We now have unrelated rules scattered across the compiled css file which has broken the IT structure, as we now have a component class mixed in with an object class. While this won't be an issue 95% of the time, a complex piece of code may cause unexpected issues elsewhere.
   
 2. Extending a class with nested rules can create lots of unnecessary code. ![poorly compiled css](https://pbs.twimg.com/media/B8mlqv_CUAAi7Qg.png:large) Nesting in general should be avoided as much as possible, but if it is necessary, **never** extend it to another class. 
 
