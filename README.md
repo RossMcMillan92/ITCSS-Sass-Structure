@@ -634,4 +634,9 @@ $base-font-family: 		"Open Sans", sans-serif;
 Again, this just allows us to keep common styles between sites consistent, modular and DRY.
 
 ## Going further
-The above structure is exactly that, a structure. It's not a framework, syntax or technology that we need to commit to (with the exception of using Sass [but even that isn't necessary for ITCSS]), it merely allows us to create and grow our Sass codebase with minimal headaches and maximum scalability.
+ITCSS is merely a way of doing things. It's not a framework, syntax or technology that we need to commit to (with the exception of Sass but even that isn't necessary for ITCSS). It simply gives us a platform on which to easily grow STV's style codebase with minimal headaches, as we all know how incredibly messy and complex CSS can/will end up.
+
+This means we can lay other specific methodologies on top, as we see fit. Some things to look into:
+
+- [Sassline typography](https://sassline.com/)
+- [Grids](https://github.com/csswizardry/csswizardry-grids)
