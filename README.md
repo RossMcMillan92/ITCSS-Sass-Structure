@@ -391,48 +391,6 @@ There are multiple reasons to avoid this:
   
 2. Extending a class with nested rules can create lots of unnecessary code. ![poorly compiled css](https://pbs.twimg.com/media/B8mlqv_CUAAi7Qg.png:large) Nesting in general should be avoided as much as possible, but if it is necessary, **never** extend it to another class. 
 
-##### When it makes sense to use @extend
-@extend can be used when related classes share the same rules, all within the same file:
-
-``` sass
-.btn,
-%btn {
-  display: inline-block;
-  padding: 10px;
-}
-
-.btn--primary {
-  @extend %btn;
-  background-color: red;
-}
-
-.btn--secondary {
-  @extend %btn;
-  background-color: green;
-}
-```
-
-This outputs to 
-``` sass
-.btn,
-.btn--primary,
-.btn--secondary {
-  display: inline-block;
-  padding: 10px;
-}
-
-.btn--primary {
-  background-color: red;
-}
-
-.btn--secondary {
-  background-color: green;
-}
-```
-This is fine because all of the grouped classes are related (all buttons, not a mix of objects and components), and the btn modifier classes aren't hoisted away to other parts of the compiled css.
-
-**Note:** '.btn--primary' and '.btn--secondary' extend the silent class '%btn' rather than '.btn'. This is so we can nest the '.btn' class elsewhere without Sass creating extra unneeded code. [Harry Roberts goes into more details about this here](http://csswizardry.com/2014/01/extending-silent-classes-in-sass/). 
-
 ##### Use mixins instead of @extend
 The thought of this scared me at first because it gives the illusion of waste, but it makes a lot of sense when explained. [Harry talks in depth about this here](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/#when-to-use-a-mixin) so I won't go into much detail. The take-home points are:
 - Less specificity issues like I mentioned above.
@@ -625,10 +583,10 @@ $base-font-family--icons:		'icomoon' !default;
 ``` sass
 // 1-settings/_fonts.scss
 
-@import '#{$path-to-external-sass}/settings/_fonts.scss';
-
 $base-line-height: 		1.4;
 $base-font-family: 		"Open Sans", sans-serif;
+
+@import '#{$path-to-external-sass}/settings/_fonts.scss';
 
 ```
 Again, this just allows us to keep common styles between sites consistent, modular and DRY.
