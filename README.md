@@ -265,7 +265,7 @@ Example Structure:
 }
 ```
 
-##### Better
+##### Good (perhaps better)
 ``` sass
 // 5-objects/_navbar.scss
 .navbar {
