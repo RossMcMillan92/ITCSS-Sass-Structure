@@ -96,7 +96,7 @@ This way may seem more complex than the first, but it means if we want to change
 **A final naming convention/structure is still to be decided**
 
 #### Variable units
-Another point to make here is all sizes should be stated in px, but later converted to em/rem with a Sass function. e.g.
+All sizes should be stated in px, but later converted to em/rem with a Sass function. e.g.
 ``` sass
 // 1-settings/content-structure.scss
 $base-spacing-unit: 20px;
@@ -112,7 +112,7 @@ $puff-margin-bottom: $base-spacing-unit !default;
   margin-bottom: rem($puff-margin-bottom / 2);
 }
 ```
-Using pixels allows us to match designs with greater detail and will keep any math as simple as possible. Converting to em/rem when it's finally needed will keep the sites responsive and accessible.
+Using pixels allows us to match designs with greater detail and will keep math as simple as possible. Converting to em/rem when it's finally needed will keep the sites responsive and accessible.
 
 ## 2. Tools
 Self explanatory; keep any mixins/functions in here. High up in the list as these tools will be used throughout the rest of the Sass codebase.
