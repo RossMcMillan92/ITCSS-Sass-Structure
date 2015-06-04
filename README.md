@@ -585,7 +585,7 @@ To clarify, our local site's widget scss file would take on the following struct
 
 If the widget styling is entirely different to the standard style, there's obviously no need to import the original file. It may be a good idea to implement multiple standard 'views' for the widget, for example 'article-list--vert.scss' and 'article-list--hor.scss', then import the most relevant standard file.
 
-**Note:** Using global/widget files would mean creating a standard file and almost never editing it again, as it will have a knock-on effect on multiple sites. Any changes to a rule in a global/widget file for a new site should be made by using the process above, and not directly to the original file. If the new site project is the first to use a certain widget, create it in the widgets folder so it can be reused, and link to it in the site's file like above.
+**Note:** Using global/widget files would mean creating a standard file and almost never editing it again, as it will have a knock-on effect on multiple sites. If we need to make the same change across multiple sites then this structure will make that easy. If a new site project is the first to use a certain widget, create it in the widgets folder so it can be reused, and link to it in the site's file like above.
 
 #### Using other global Sass code
 The method above works well for Widgets, but it can also be used for other parts of the Sass code. Take settings files for example, we can have global settings for things like STV's colour scheme, and standard fonts, then include them using the method above and overwriting any differences.
