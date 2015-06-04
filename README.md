@@ -215,7 +215,7 @@ In theory, once an object is made here, it should rarely need edited again.
 
 
 ## 6. Components
-Chunks of UI styling go here. This section may grow quite large depending on the complexity of the site so further organisation into deeper folders may be needed. Caution should be exercised here, as we should aim to make components modular and reusable.
+The majority of the site's styling will go in here. This section may grow quite large depending on the complexity of the site so further organisation into deeper folders may be needed. Caution should be exercised when doing this, however, as we should aim to make components modular and reusable when possible.
 
 Example Structure:
 ``` 
@@ -228,7 +228,7 @@ Example Structure:
     _contact-page.scss
 ```
 
-**Note:** Components may depend on objects to complete the style, but two components should *rarely* rely on each other as they should be kept as completely seperate entities. If you find that you can extend one component to create a new but similar one, consider refactoring the component into an object which can be reused and later embellished in the component. Alternatively, try combining the components into one and using modifier flags ('.component**--alt-style**') to differentiate.
+**Note:** Components may depend on objects to complete the style, but two components should *rarely* rely on each other as they should be kept as completely seperate entities. If you find that you can extend one component to create a new but similar one, consider refactoring the component into an object which can be reused and later embellished in the component. Alternatively, try combining the components into a single one and using modifier flags ('.component**--alt-style**') to differentiate.
 
 ##### Bad
 ``` sass
@@ -247,7 +247,7 @@ Example Structure:
 }
 ```
 
-##### Good
+##### Good #1
 ``` sass
 // 6-components/navbar.scss
 .navbar {
@@ -265,7 +265,7 @@ Example Structure:
 }
 ```
 
-##### Good (perhaps better)
+##### Good #2
 ``` sass
 // 5-objects/_navbar.scss
 .navbar {
@@ -294,7 +294,7 @@ Example Structure:
 </div>
 ```
 
-One thing to note about the 'Good' example is that adding modifiers can quickly build up and make a single component overly complex. If this looks like it could happen, it may be best splitting the component up into multiple components like in the 'Better' example.
+One thing to note about the 'Good #1' example is that adding modifiers can quickly build up and make a single component overly complex. If this looks like it could happen, it may be best splitting the component up into multiple components like in the 'Good #2' example.
 
 Both of the above examples work well because no component depends on another. This is not to say components can't be nested, but a single element shouldn't have two different components classes assigned to it. 
 
