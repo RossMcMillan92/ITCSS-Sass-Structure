@@ -215,15 +215,14 @@ In theory, once an object is made here, it should rarely need edited again.
 
 
 ## 6. Components
-Chunks of UI styling go here. This section may grow quite large depending on the complexity of the site, therefore subfolders may be used to group certain files (**Note:** Caution should be exercised here as components should be modular enough to be reused throughout the site. Don't store something in a 'header' folder if it can also be used in the footer. i.e. Keep names ambiguous.) A 'templates' folder might also be used to seperate page styling from other modules. 
+Chunks of UI styling go here. This section may grow quite large depending on the complexity of the site so further organisation into deeper folders may be needed. Caution should be exercised here, as we should aim to make components modular and reusable.
 
 Example Structure:
 ``` 
 6-components
   _breadcrumbs.scss
-  header
-    _banner.scss
-    _header.scss
+  _banner.scss
+  _header.scss
   _puff.scss
   templates
     _contact-page.scss
