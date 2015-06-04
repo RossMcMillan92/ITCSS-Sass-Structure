@@ -532,7 +532,7 @@ $article-list__font-color: 		#fff;
 $article-list__img-width: 		100px;
 
 // import the 'standard style'
-@import '#{$external-widget-path}/article-list';
+@import '#{$path-to-external-sass}/article-list';
 
 // make necessary amends.
 .article-list__img {
@@ -586,7 +586,7 @@ $base-font-family--icons:		'icomoon' !default;
 $base-line-height: 		1.4;
 $base-font-family: 		"Open Sans", sans-serif;
 
-@import '#{$path-to-external-sass}/settings/_fonts.scss';
+@import '#{$path-to-external-sass}/settings/fonts';
 
 ```
 Again, this just allows us to keep common styles between sites consistent, modular and DRY.
