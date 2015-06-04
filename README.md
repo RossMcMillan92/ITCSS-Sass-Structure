@@ -1,5 +1,5 @@
 # STV Sass
-Based on Harry Roberts' concept ITCSS. For a complete overview, watch [this talk](https://www.youtube.com/watch?v=1OKZOV-iLj4) and [read these slides](https://speakerdeck.com/dafed/managing-css-projects-with-itcss). This git serves as a working example, however it's not perfect and hasn't been adapted to work with the current STV codebase. Along with a basic introduction to ITCSS, this readme will also contain a few general best practices for working with Sass/css.
+Based on Harry Roberts' concept ITCSS. For a complete overview, watch [this talk](https://www.youtube.com/watch?v=1OKZOV-iLj4) and [read these slides](https://speakerdeck.com/dafed/managing-css-projects-with-itcss). This git serves as a working example, however it's not perfect and hasn't been adapted to work with the current STV codebase. Along with a basic introduction to ITCSS, this readme will also contain a few general best practices/methods for working with Sass/css.
 
 *A lot of things discussed here will be common sense and may sound condescending to some, but it's important to write down just to make sure we're all on the same page. There are also some opinionated points which may need to be discussed and ironed out by the team before the system is considered.*
 
