@@ -558,16 +558,19 @@ Now, we need to use this widget on our new site and match it to it's theme. Our 
 ``` sass
 // 6-components/_article-list.scss
 
+// configure widget with our site specific settings
 $article-list__border-color: 	#555;
 $article-list__spacing: 		20px;
 $article-list__bg-color: 		#222;
 $article-list__font-color: 		#fff;
 $article-list__img-width: 		100px;
 
-@import 'external-widget';
+// import the 'standard style'
+@import '#{$external-widget-path}/article-list';
 
+// make necessary amends.
 .article-list__img {
-	border-radius: 50%;
+    border-radius: 50%;
 }
 
 ```
