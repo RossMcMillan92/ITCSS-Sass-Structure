@@ -480,10 +480,11 @@ To give an example, take the following mocked up 'article-list' widget.
 
 ![Default article-list style](http://i.imgur.com/iP9cJcL.png)
 
-The Sass code for this looks like the following (and it lives elsewhere, linked to by this variable: $path-to-external-sass):
+The Sass code for this looks like the following (and it lives elsewhere, e.g. 'core.stv.tv/public/assets/source'):
 
 ``` sass
-// core.stv.tv/public/assets/source/widgets/article-list.scss
+// $path-to-external-sass: 'core.stv.tv/public/assets/source/'
+// #{$path-to-external-sass}/widgets/article-list.scss
 
 // naming convention to be determined
 $article-list__border-color: 	#ccc !default;
