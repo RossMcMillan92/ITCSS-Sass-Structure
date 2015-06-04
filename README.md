@@ -433,7 +433,7 @@ This is fine because all of the grouped classes are related (all buttons, not a 
 ##### Use mixins instead of @extend
 The thought of this scared me at first because it gives the illusion of waste, but it makes a lot of sense when explained. [Harry talks in depth about this here](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/#when-to-use-a-mixin) so won't go into much detail. The take-home points are:
 - Less specificity issues like I mentioned above.
-- Gzip catches and compress the 'wasted' code.
+- Gzip catches and compresses the 'wasted' code.
 - While the compiled code isn't DRY, the source code is, and that's what matters.
 
 #### Use of classes
