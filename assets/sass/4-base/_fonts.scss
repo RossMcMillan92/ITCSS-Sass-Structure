@@ -1,33 +1,33 @@
-@function font-primary--thin(){
+@mixin font-primary--thin(){
 	font-family: $base-font-family;
 	font-weight: 100;
 }
 
-@function font-primary--light(){
+@mixin font-primary--light(){
 	font-family: $base-font-family;
 	font-weight: 300;
 }
 
-@function font-primary--regular(){
+@mixin font-primary--regular(){
 	font-family: $base-font-family;
 	font-weight: 400;
 }
 
-@function font-primary--bold(){
+@mixin font-primary--bold(){
 	font-family: $base-font-family;
 	font-weight: 700;
 }
 
-@function font-primary--extrabold(){
+@mixin font-primary--extrabold(){
 	font-family: $base-font-family;
 	font-weight: 900;
 }
 
-@function font-secondary--regular(){
+@mixin font-secondary--regular(){
 	font-family: $base-font-family--secondary;
 	font-weight: 400;
 }
 
-@function font-icon(){
+@mixin font-icon(){
     font-family: $base-font-family--icons;
 }

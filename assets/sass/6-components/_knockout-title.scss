@@ -1,0 +1,44 @@
+$knockout-title__bg-color: get-color(alpha, $palette--secondary) !default;
+$knockout-title__highlight-color: get-color(alpha) !default;
+$knockout-title__text-color: #fff !default;
+
+.knockout-title {
+	background-color: $knockout-title__bg-color;
+	overflow: hidden;
+}
+	.knockout-title__group {
+		position: relative;
+
+		&:before {
+			position: absolute;
+			content: "";
+			background-color: $knockout-title__highlight-color;
+			width: 100%;
+			height: 100%;
+			left: -100%;
+		}
+	}
+
+	.knockout-title__title {
+		position: relative;
+		display: inline-block;
+		width: auto;
+		color: $knockout-title__text-color;
+		background-color: $knockout-title__highlight-color;
+		padding: rem($base-spacing-unit / 2);
+		padding-left: 0;
+		margin-bottom: 0;
+		z-index: 2;
+
+		&:after {
+			position: absolute;
+			content: "";
+			background-color: inherit;
+			width: rem(70px);
+			height: 100%;
+			top: 0;
+			right: rem(-35px);
+			transform: skewX(-30deg);
+			z-index: -1;
+		}
+	}

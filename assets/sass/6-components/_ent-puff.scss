@@ -1,0 +1,47 @@
+$ent-puff__main-bg-color: get-color(alpha, $palette--secondary) !default;
+$ent-puff__main-text-color: #fff !default;
+
+// label
+$ent-puff__label-bg-color: get-color(alpha) !default;
+$ent-puff__label-text-size: $h6-size !default;
+
+// body
+$ent-puff__title-text-size: $h3-size !default;
+$ent-puff__body-text-size: $h5-size !default;
+
+.ent-puff {
+	background-color: $ent-puff__main-bg-color;
+
+	&:hover {
+		background-color: $ent-puff__label-bg-color;
+	}
+}
+	.ent-puff__image {
+		display: block;
+		max-width: 100%;
+	}
+
+	.ent-puff__label,
+	.ent-puff__title,
+	.ent-puff__body {
+		color: $ent-puff__main-text-color;
+	}
+
+	.ent-puff__label {
+		background-color: $ent-puff__label-bg-color;
+		padding: rem($base-spacing-unit / 2) rem($base-spacing-unit);
+		font-size: rem($ent-puff__label-text-size);
+		text-transform: uppercase;
+	}
+
+	.ent-puff__body {
+		padding: rem($base-spacing-unit / 2) rem($base-spacing-unit);
+	}
+
+	.ent-puff__title {
+		font-size: rem($ent-puff__title-text-size);
+	}
+
+	.ent-puff__body {
+		font-size: $ent-puff__body-text-size;
+	}

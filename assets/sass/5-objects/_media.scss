@@ -17,8 +17,8 @@
  *
  */
 .media{
-    display:block;
     @extend .cf;
+    display:block;
 }
     .media__img{
         float:left;

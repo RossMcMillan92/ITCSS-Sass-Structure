@@ -17,7 +17,7 @@
 	1. Settings
 ---------------------------------------------- */ 
 
-	@import '1-settings/palette';
+	@import 'themes/theme-a/1-settings/palette';
 	@import '1-settings/fonts';
 	@import '1-settings/breakpoints';
 	@import '1-settings/content-structure';
@@ -31,6 +31,7 @@
 
 	@import '2-tools/generic';
 	@import '2-tools/mediaqueries';
+	@import '2-tools/palette';
 	@import '2-tools/units';
 
 
@@ -63,6 +64,7 @@
 	@import '5-objects/justified-section';
 	@import '5-objects/lists';
 	@import '5-objects/icons';
+	@import '5-objects/layout-structure';
 	@import '5-objects/position';
 	@import '5-objects/media';
 	@import '5-objects/text';
@@ -73,7 +75,8 @@
 	6. Components
 ---------------------------------------------- */ 
 
-
+	@import '6-components/ent-puff';
+	@import 'themes/theme-a/6-components/knockout-title';
 
 
 /* ----------------------------------------------

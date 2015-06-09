@@ -5,15 +5,16 @@
     padding: 0;
     margin: 0;
     list-style: none;
+}
 
-    li{
+    .cleanlist__item,
+    %cleanlist__item {
         text-indent: 0 !important;
 
         &:before{
             display: none;
         }
     }
-}
 
 .list-hor{
     @extend %cleanlist;
@@ -27,6 +28,7 @@
 }
 
     .list-hor--separated__item{
+        @extend %cleanlist__item;
         display: inline-block;
         position: relative;
         padding: 0;
@@ -50,6 +52,7 @@
     @extend %cleanlist;
 }
     .block-list__item{
+        @extend %cleanlist__item;
         display: block;
         border-bottom: solid 1px rgba(0,0,0,.1);
 
@@ -68,7 +71,7 @@
     .justified-list__item{
         display: inline;
     }  
-    .justified-list__item--end {
+    .justified-list__end-item {
         display: inline-block;
         width: 100%;
     }

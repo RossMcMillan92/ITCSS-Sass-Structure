@@ -156,6 +156,14 @@ $class-type:            unquote(".");
     }
 }
 
+#{$class-type}grid--thin{
+    margin-left:-(1px);
+
+    > #{$class-type}grid__item{
+        padding-left:1px;
+    }
+}
+
 #{$class-type}grid--wide{
     margin-left:-($gutter * 2);
 
