@@ -195,20 +195,19 @@ Example Structure:
 Example rules: 
 ``` sass
 // 5-objects/_media.scss
-.media{
-    @extend .cf;
+.media {
     display:block;
 }
-    .media__img{
+    .media__img {
         float:left;
         margin-right:rem($base-spacing-unit);
-
-        &.is-half-spaced{
-            margin-right:rem($base-spacing-unit / 2);
-        }
     }
     
-    .media__body{
+    .media__img--half-spaced {
+        margin-right:rem($base-spacing-unit / 2);
+    }
+    
+    .media__body {
         overflow:hidden;
     }
 ```
@@ -593,7 +592,7 @@ $base-font-family: 		"Open Sans", sans-serif;
 Again, this just allows us to keep common styles between sites consistent, modular and DRY.
 
 ## Going further
-ITCSS is merely a way of doing things. It's not a framework, syntax or technology that we need to commit to (with the exception of Sass but even that isn't necessary for ITCSS). It simply gives us a platform on which to easily grow STV's style codebase with minimal headaches, as we all know how incredibly messy and complex CSS can/will end up.
+ITCSS is an architecture. It's not a framework, syntax or technology that we need to commit to (with the exception of Sass but even that isn't necessary for ITCSS). It simply gives us a platform on which to easily grow STV's style codebase with minimal headaches, as we all know how incredibly messy and complex CSS can/will end up.
 
 This means we can lay other specific methodologies on top, as we see fit. Some things to look into:
 
