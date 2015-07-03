@@ -34,14 +34,11 @@ $ent-puff__body-text-size: $h5-size !default;
 		text-transform: uppercase;
 	}
 
-	.ent-puff__body {
-		padding: rem($base-spacing-unit / 2) rem($base-spacing-unit);
-	}
-
 	.ent-puff__title {
 		font-size: rem($ent-puff__title-text-size);
 	}
 
 	.ent-puff__body {
+		padding: rem($base-spacing-unit / 2) rem($base-spacing-unit);
 		font-size: $ent-puff__body-text-size;
 	}
