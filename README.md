@@ -6,21 +6,21 @@ Along with a basic introduction to ITCSS, this readme will also contain a few ge
 *A lot of things discussed here will be common sense to some, but it's important to write down just to make sure we're all on the same page. There are also some opinionated points which may need to be discussed and ironed out by the team before the system is considered.*
 
 ## Contents
-1. [Overview](#overview)
-1. [1. Settings](#1-settings)
+[Overview](#overview)
+[1. Settings](#1-settings)
   - Variable names
   - Variable units
-1. [2. Tools](#2-tools)
-1. [3. Generic](#3-generic)
-1. [4. Base](#4-base)
-1. [5. Objects](#5-objects)
-1. [6. Components](#6-components)
-1. [7. Trumps](#7-trumps)
-1. [Example](#example)
+[2. Tools](#2-tools)
+[3. Generic](#3-generic)
+[4. Base](#4-base)
+[5. Objects](#5-objects)
+[6. Components](#6-components)
+[7. Trumps](#7-trumps)
+[Example](#example)
   - Avoiding @extend
   - Use of classes
-1. [Using widgets](#using-widgets)
-1. [Going further](#going-further)
+[Using widgets](#using-widgets)
+[Going further](#going-further)
 
 ## Overview
 ITCSS is a certain way of structuring Sass files to minimise rewriting/undoing code, and to maximise scalability. IT stands for Inverted Triangle, which is the basis of the code structure. In our master Sass file, rules which broadly affect elements on the page are imported at the top. As specificity grows, the further down the file the rules will be imported. 
