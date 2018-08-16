@@ -1,4 +1,4 @@
-# STV Sass
+# Sass Structure
 Based on Harry Roberts' concept ITCSS. For a complete overview, watch [this talk](https://www.youtube.com/watch?v=1OKZOV-iLj4) and [read these slides](https://speakerdeck.com/dafed/managing-css-projects-with-itcss). The files in this git serve as a working example, however they aren't perfect and haven't been adapted to work with the current STV codebase. 
 
 Along with a basic introduction to ITCSS, this readme will also contain a few general best practices/methods for working with Sass.
@@ -22,15 +22,12 @@ Along with a basic introduction to ITCSS, this readme will also contain a few ge
 
 [6. Components](#6-components)
 
-[7. Trumps](#7-trumps)
+[7. Utilities](#7-utilities)
 
-[Example](#example)
-  - Avoiding @extend
-  - Use of classes
-  
-[Using widgets](#using-widgets)
+[Avoiding @extend](#avoiding-extend)
 
-[Going further](#going-further)
+[Use of classes](#use-of-classes)
+ 
 
 ## Overview
 ITCSS is a certain way of structuring Sass files to minimise rewriting/undoing code, and to maximise scalability. IT stands for Inverted Triangle, which is the basis of the code structure. In our master Sass file, rules which broadly affect elements on the page are imported at the top. As specificity grows, the further down the file the rules will be imported. 
@@ -49,7 +46,7 @@ Further down the list, less specific rules will come into place (classed selecto
 
 And at the bottom of the list, very specific rules are placed (classed selectors, !important can be used) e.g.
 ``` sass
-.bg--alpha { background-color: green }
+.bg-alpha { background-color: green !important }
 ```
 
 By keeping this top-down structure, rewriting and undoing css will be minimised as the order which the rules are placed will dictate specificity. Use of !important should be unnecessary, other than perhaps in helper files at the _very bottom_ of the list.
@@ -62,7 +59,7 @@ The full Sass structure looks like the following:
 1. **Base** 		    - Unclassed HTML rules
 1. **Objects** 	  	- Cosemetic-free design patterns
 1. **Components** 	- Chunks of UI
-1. **Trumps**   		- Helpers and overrides
+1. **Utilities**   		- Helpers and overrides
 
 ## 1. Settings
 Site-wide variables such as margin sizes, color schemes, font families/sizes etc. should go in here. There should be minimal 'Magic Numbers' throughout the code. **Note:** These settings are for site-wide variables. Component specific settings should go at the top of the component's file.
@@ -76,56 +73,55 @@ Example Structure:
 ```
 
 #### Variable names
-Keep variable names ambiguous to prevent refactoring code in the future.
+When declared in the `settings` layer, variable names should have descriptive names in kebab case:
 
-##### Bad
-``` sass
-// 1-settings/_pallete.scss
-$red: #ff2134; // Site's primary theme color
-// ...
-
-// 6-components/_puff.scss
-.puff{
-  font-color: $red;
-}
-```
-If we want to change the site's primary theme colour to green, we'll need to change it in the settings file, as well as the components file (and all other files it's used in.)
-
-##### Good
-``` sass
-// 1-settings/_pallete.scss
-$red: #ff2134; // Use concrete names to describe variables that won't change
-$palette--primary: $red; // Use ambiguous names for variables that may change, and that are used throughout the codebase
-// ...
-
-// 6-components/_puff.scss
-$puff-font-color: $palette--primary !default;
-.puff{
-  font-color: $puff-font-color;
-}
-```
-This way may seem more complex than the first, but it means if we want to change the site's primary theme colour to green we'll only need to change it once within the settings file. This gives us a lot more flexibility.
-
-**A final naming convention/structure is still to be decided**
-
-#### Variable units
-All absolute sizes should be stated in px, but later converted to em/rem with a Sass function. e.g.
-``` sass
-// 1-settings/_content-structure.scss
+```scss
 $base-spacing-unit: 20px;
-// ...
+$palette-alpha: red;
+```
 
-// 6-components/_puff.scss
-$puff-margin-bottom: $base-spacing-unit !default;
+When declared in components, it is helpful to manually scope these variables to the component. We can do this by using a BEM-like naming scheme:
 
-.puff{
-  margin-bottom: rem($puff-margin-bottom);
-}
-.puff--small{
-  margin-bottom: rem($puff-margin-bottom / 2);
+```scss
+// components/modal.scss
+$modal__max-width: 300px;
+$modal__background-color: $palette-alpha;
+```
+By doing this, we circumvent (to an extent) the global nature of css. We have to follow some rules:
+
+- **Never** Use a component variable outside of it's own component file. If you need shared variables between components, put the variable in the `settings` layer
+
+#### Bad
+``` scss
+// components/button-primary.scss
+$button-primary__bg-color: blue;
+
+// components/modal.scss
+.modal__cancel-button {
+  background-color: $button-primary__bg-color;
 }
 ```
-Using pixels allows us to match designs with greater detail and will keep math as simple as possible. Converting to em/rem when it's finally needed will keep the sites responsive and accessible.
+
+Now these two components rely on each other existing, meaning they are no longer orthogonal. Import order now matters, and if we remove `button-primary.scss` then `modal.scss` will break.
+
+Instead move the common variables to the `settings` layer:
+
+#### Good
+``` scss
+// settings/palette.scss
+$primary-button-bg-color: blue;
+
+// components/button-primary.scss
+$button-primary__bg-color: $primary-button-bg-color;
+
+// components/modal.scss
+.modal__cancel-button {
+  background-color: $primary-button-bg-color;
+}
+```
+
+The order of the component imports no longer matters, and if we remove `button-primary.scss` then `modal.scss` will no longer break.
+
 
 ## 2. Tools
 Self explanatory; keep any mixins/functions in here. High up in the list as these tools will be used throughout the rest of the Sass codebase.
@@ -227,7 +223,7 @@ In theory, once an object is made here, it should rarely need edited again.
 
 
 ## 6. Components
-The majority of the site's styling will go in here. This section may grow quite large depending on the complexity of the site so further organisation into deeper folders may be needed. Caution should be exercised when doing this, however, as we should aim to make components modular and reusable when possible.
+The majority of the site's styling will go in here. This section may grow quite large depending on the complexity of the site. Keep this import list alphabetical: If import order starts to matter, then something in the structure has went wrong. 
 
 Example Structure:
 ``` 
@@ -240,7 +236,7 @@ Example Structure:
     _contact-page.scss
 ```
 
-**Note:** Components may depend on objects to complete the style, but two components should *rarely* rely on each other as they should be kept as completely seperate entities. If you find that you can extend one component to create a new but similar one, consider refactoring the component into an object which can be reused and later embellished in the component. Alternatively, try combining the components into a single one and using modifier flags ('.component**--alt-style**') to differentiate.
+**Note:** Components may depend on objects to complete the style, but two components should *rarely* rely on each other as they should be kept as completely seperate entities. If you find that you can extend one component to create a new but similar one, try combining the components into a single one and using modifier flags ('.component**--alt-style**') to differentiate.
 
 ##### Bad
 ``` sass
@@ -259,7 +255,7 @@ Example Structure:
 }
 ```
 
-##### Good #1
+##### Good
 ``` sass
 // 6-components/_navbar.scss
 .navbar {
@@ -277,104 +273,67 @@ Example Structure:
 }
 ```
 
-##### Good #2
+##### Bad
 ``` sass
-// 5-objects/_navbar.scss
-.navbar {
-  height: 60px;
-  padding: 10px;
-  // ...
+// 6-components/button.scss
+.button {
+	background-color: red;
 }
 
-// 6-components/_header-nav.scss
-.header-nav {
-  background-color: red
-}
-
-// 6-components/_footer-nav.scss
-.footer-nav {
-  background-color: green;
+// 6-components/sidebar.scss
+.sidebar {
+  button {
+  	background-color: green;
+  }
 }
 
 // index.html
-<div class="header-nav navbar">
-  <!-- ... -->
-</div>
-
-<div class="footer-nav navbar">
-  <!-- ... -->
+<div class="sidebar">
+  <button class="button">Press Me</button>
 </div>
 ```
 
-One thing to note about the 'Good #1' example is that adding modifiers can quickly build up and make a single component overly complex. If this looks like it could happen, it may be best splitting the component up into multiple components like in the 'Good #2' example.
+##### Good
+``` sass
+// 6-components/button.scss
+.button {
+	background-color: red;
+}
 
-Both of the above examples work well because no component depends on another. This is not to say components can't be nested, but a single element shouldn't have two different components classes assigned to it. 
+button--secondary {
+	background-color: green;
+}
 
-## 7. Trumps
-Rules that are added at the very end, generally used for helper classes.
+// index.html
+<div class="sidebar">
+  <button class="button button--secondary">Press Me</button>
+</div>
+```
+
+
+
+## 7. Utilities
+Rules that are added at the very end, generally used for helper classes. These should mostly be classes with a single rule. The rules should always have `!important` so they **always** overwrite previous class rules.
 
 Example Structure:
 ``` 
-// 7-trumps
+// 7-utilities
   _helper.scss
   _palette.scss
 ```
 
 Example rules: 
 ``` sass
-// 7-trumps/_palette.scss
-.bg--alpha {
+// 7-utilities/_palette.scss
+.bg-alpha {
   background-color: $palette--primary;
 }
 
-.txt--beta {
-  color: $palette--secondary;
+.txt-center {
+  text-align: center;
 }
 ```
-Since this file is at the very bottom of the list, adding the '.bg--alpha' class to an element will 'trump' any previously set background-color. While we should strive to keep specificity as low as possible, i.e. single class selectors via BEM, we will always have cases where nested classes are needed. To allow trumps to work on these, we need to add !important to the trump rules. This should be safe to do as there isn't much scope for problems this late on in the file.
-
-## Example
-
-``` sass
-// index.html
-<ul class="hor-list breadcrumbs">
-  <li class="hor-list__item breadcrumbs__item">Link 1</li>
-  <li class="hor-list__item breadcrumbs__item">Link 2</li>
-  <li class="hor-list__item breadcrumbs__item">Link 3</li>
-</ul>
-
-// 5-objects/_lists.scss
-.list-hor{
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-    .list-hor__item{
-        display: inline-block;
-    }
-    
-// 6-components/_breadcumbs.scss
-.breadcrumb{
-	background-color: #000;
-	width: 100%;
-	padding: rem($base-spacing-unit / 2) rem($base-spacing-unit);
-}
-	.breadcrumb__item{
-		font-size: rem(11px);
-		text-transform: uppercase;
-		color: #fff;
-		margin-right: rem($base-spacing-unit / 2);
-
-		&:after{
-			position: absolute;
-			content: "|";
-			color: $palette--primary;
-			margin-left: rem($base-spacing-unit / 2);
-		}
-	}
-```
-
-Note that '.list-hor' has no cosmetic styling (color, font-size etc), while '.breadcrumb' does. This allows us to reuse '.list-hor' without constantly having to *undo* it's rules. Also note that the padding on '.list-hor' is being overwritten by the '.breadcrumb' class. Since our component comes after the object in the master Sass file, the '.breadcrumb' rules will overwrite the '.list-hor' rules without any hassle with specificity (i.e. no need for !important).
+Since this file is at the very bottom of the list, adding the '.bg-alpha' class to an element will trump any previously set background-color. While we should strive to keep specificity as low as possible, i.e. single class selectors via BEM, we will always have cases where nested classes are needed. To allow utilities to work on these, we need to add !important to the utilities' rules.
 
 #### Avoiding @extend
 [This article by Oliver Jash](http://oliverjash.me/2012/09/07/methods-for-modifying-objects-in-oocss.html) explains clearly the cons of using @extend instead of defering this functionality to the HTML. I'll highlight a few reasons not to use @extend.
@@ -396,12 +355,12 @@ There are multiple reasons to avoid this:
   // compiled css
   .list-hor, .breadcrumbs {/*...*/}
   ```
-  We now have unrelated rules scattered across the compiled css file which has broken the IT structure, as we now have a component class mixed in with an object class. While this won't be an issue 95% of the time, a complex piece of code may cause unexpected issues elsewhere.
+  We now have unrelated rules scattered across the compiled css file which has broken the IT structure, as we now have a component class mixed in with an object class. While this won't be an issue 90% of the time, a complex piece of code may cause unexpected issues elsewhere.
   
 2. Extending a class with nested rules can create lots of unnecessary code. ![poorly compiled css](https://pbs.twimg.com/media/B8mlqv_CUAAi7Qg.png:large) Nesting in general should be avoided as much as possible, but if it is necessary, **never** extend it to another class. 
 
 ##### Use mixins instead of @extend
-The thought of this scared me at first because it gives the illusion of waste, but it makes a lot of sense when explained. [Harry talks in depth about this here](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/#when-to-use-a-mixin) so I won't go into much detail. The take-home points are:
+[Harry Roberts talks in depth about this here](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/#when-to-use-a-mixin) so I won't go into much detail. The take-home points are:
 - Less specificity issues like I mentioned above.
 - Gzip catches and compresses the 'wasted' code.
 - While the compiled code isn't DRY, the source code is, and that's what matters.
@@ -433,13 +392,14 @@ The above code gives the 'li' element a high specificity. This means when I come
 
 // 6-components/_nav.scss
 .nav {
-  
+  // ...
 }
-  .nav__item {
-    padding: 20px; // won't work
-    padding: 20px !important; // will work but causes even higher specificity
-  }
+.nav__item {
+	padding: 20px; // won't work
+	padding: 20px !important; // will work but causes even higher specificity
+}
 ```
+
 Trying to overwrite the padding won't work because '.blocklist li' has a higher specificity than '.nav__item', therefore !important is needed.
 
 ##### Good
@@ -455,22 +415,24 @@ Trying to overwrite the padding won't work because '.blocklist li' has a higher 
   margin: 0;
   list-style: none;
 }
-  .block-list__item {
-    display: inline-block;
-    padding: 10px;
-  }
+.block-list__item {
+	display: inline-block;
+	padding: 10px;
+}
     
 // 6-components/_nav.scss
 .nav {
-  
+  // ...
 }
-  .nav__item{
-    padding: 20px; // Works!
-  }
+.nav__item{
+	padding: 20px; // Works!
+}
 ```
-The padding can now be changed because '.block-list__item' and '.nav__item' have the same specificity (i.e. one class). '.nav__item' will overwrite because it's a component and therefore exists later in the compiled css.
+
+The padding can now be changed because '.block-list__item' and '.nav__item' have the same specificity (i.e. one class). '.nav__item' will overwrite because it's included in the `components` layer further down in the compiled css.
 
 If you don't have access to the markup and therefore must nest selectors to target elements, try not to be too broad with your selectors, like the following:
+
 ``` sass
 .header{
   a {
@@ -479,132 +441,3 @@ If you don't have access to the markup and therefore must nest selectors to targ
 }
 ```
 The rule above will affect *all links in the header*. Can you guarantee they should all be red? If not, you will now have to write more code to change the other links back possibly causing unnecessary waste and even more high specificity rules.
-
-## Using widgets
-**This section is merely an idea, and may be unncessary if the team decides so. However, it should be considered as it will keep the codebase DRY and will minimlise the constant rewriting of a commonly used widgets.**
-
-At STV we make good use of reusable 'widgets' which allow us to drop in some functionality with minimal effort. To extend this drop-in functionality, we can use certain methods to make use of a 'standard style', which can be quickly updated and extended in our individual site's Sass codebase.
-
-To give an example, take the following mocked up 'article-list' widget. 
-
-![Default article-list style](http://i.imgur.com/iP9cJcL.png)
-
-The Sass code for this looks like the following (and it lives elsewhere, e.g. 'core.stv.tv/public/assets/source/widgets/'):
-
-``` sass
-// $path-to-external-sass: 'core.stv.tv/public/assets/source/'
-// #{$path-to-external-sass}/widgets/article-list.scss
-
-// naming convention to be determined
-$article-list__border-color: 	#ccc !default;
-$article-list__spacing: 		if(variable-exists(base-spacing-unit), $base-spacing-unit / 2, 10px) !default;
-$article-list__bg-color: 		#fff !default;
-$article-list__font-color: 		if(variable-exists(palette--primary), nth($palette--primary, 2), red) !default;
-$article-list__img-width: 		50px !default;
-
-.article-list {
-	border: solid 1px $article-list__border-color;
-}
-	.article-list__item {
-		padding: rem($article-list__spacing);
-		border-bottom: solid 1px $article-list__border-color;
-		background-color: $article-list__bg-color;
-
-		&:last-child {
-			border-bottom: none;
-		}
-	}
-
-	.article-list__img {
-		width: rem($article-list__img-width);
-		height: auto;
-		margin-right: rem($article-list__spacing);
-		float: left;
-	}
-
-	.article-list__body {
-		color: $article-list__font-color;
-	}
-
-```
-Take note of the variables at the top. They are all trailed with !default, which means we can override them. Also notice the if statements in some of the variables, acting like a ternary statement. This allows us to look for a standard variable name and use it if it exists in our site's Sass codebase, otherwise a default value is used.
-
-Now, we need to use this widget on our new site and match it to it's theme. Our first instinct would be to copy/paste a previous style and hack away, or even just rewrite the style from scratch. But with this method, all we need to do is import the standard widget style and change some variables. We can also add some overwritten/additional classes to the end if the standard file can't fully adapt. So the Sass file in our site's codebase looks like:
-
-``` sass
-// 6-components/_article-list.scss
-
-// configure widget with our site specific settings
-$article-list__border-color: 	#555;
-$article-list__spacing: 		20px;
-$article-list__bg-color: 		#222;
-$article-list__font-color: 		#fff;
-$article-list__img-width: 		100px;
-
-// import the 'standard style'
-@import '#{$path-to-external-sass}/article-list';
-
-// make necessary amends.
-.article-list__img {
-    border-radius: 50%;
-}
-
-```
-This additional code can quickly transform the standard style into something completely new, with minimal additional code, keeping our global codebase DRY and modular. 
-
-![Themed article-list style](http://i.imgur.com/ybXmCiD.png)
-
-To clarify, our local site's widget scss file would take on the following structure:
-- Settings relevant to the site's theme
-- Import the standard widget style, which contains !default variables
-- If necessary, list additional or overwritten rules for the widget
-
-If the widget styling is entirely different to the standard style, there's obviously no need to import the original file. It may be a good idea to implement multiple standard 'views' for the widget, for example 'article-list--vert.scss' and 'article-list--hor.scss', then import the most relevant standard file.
-
-**Note:** Using global/widget files would mean creating a standard file and almost never editing it again, as it will have a knock-on effect on multiple sites. If we need to make the same change across multiple sites then this structure will make that easy. If a new site project is the first to use a certain widget, create it in the widgets folder so it can be reused, and link to it in the site's file like above.
-
-#### Using other global Sass code
-The method above works well for Widgets, but it can also be used for other parts of the Sass code. Take settings files for example, we can have global settings for things like STV's colour scheme, and standard fonts, then include them using the method above and overwriting any differences.
-
-``` sass
-// core.stv.tv/public/assets/source/global/styles/settings/_fonts.scss
-
-$base-font-size: 		16px !default;
-$base-line-height: 		1.6 !default;
-
-$mega-size: 			55px !default;
-$kilo-size:      	   	28px !default;
-
-$h1-size:        	   	50px !default; 
-$h2-size:        	   	25px !default; 
-$h3-size:        	   	20px !default; 
-$h4-size:        	   	17px !default; 
-$h5-size:        	   	15px !default; 
-$h6-size:      	  	   	13px !default; 
-
-$milli-size:   		   	12px !default;
-$micro-size:   		   	10px !default;
-
-$base-font-family: 				"FS Me Web Bold", stv-ssp, Helvetica, Arial, sans-serif !default;
-$base-font-family--icons:		'icomoon' !default;
-
-```
-
-``` sass
-// 1-settings/_fonts.scss
-
-$base-line-height: 		1.4;
-$base-font-family: 		"Open Sans", sans-serif;
-
-@import '#{$path-to-external-sass}/settings/fonts';
-
-```
-Again, this just allows us to keep common styles between sites consistent, modular and DRY.
-
-## Going further
-ITCSS is an architecture. It's not a framework, syntax or technology that we need to commit to (with the exception of Sass but even that isn't necessary for ITCSS). It simply gives us a platform on which to easily grow STV's style codebase with minimal headaches, as we all know how incredibly messy and complex CSS can/will end up.
-
-This means we can lay other specific methodologies on top, as we see fit. Some things to look into:
-
-- [Sassline typography](https://sassline.com/)
-- [Grids](https://github.com/csswizardry/csswizardry-grids)
