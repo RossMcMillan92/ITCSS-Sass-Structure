@@ -66,10 +66,10 @@ Site-wide variables such as margin sizes, color schemes, font families/sizes etc
 
 Example Structure:
 ``` 
-1-settings
-  _breakpoints.scss
-  _fonts.scss
-  _palette.scss
+settings
+  breakpoints.scss
+  fonts.scss
+  palette.scss
 ```
 
 #### Variable names
@@ -126,9 +126,9 @@ Self explanatory; keep any mixins/functions in here. High up in the list as thes
 
 Example Structure:
 ``` 
-2-tools
-  _media-queries.scss
-  _units.scss
+tools
+  media-queries.scss
+  units.scss
 ```
 
 ## 3. Generic
@@ -136,10 +136,9 @@ Generally 'set and forget' type rules will go in here, e.g. normalize, clearfix,
 
 Example Structure:
 ``` 
-3-generic
-  _clearfix.scss
-  _generic.scss
-  _normalize.scss
+generic
+  clearfix.scss
+  normalize.scss
 ```
 
 ## 4. Base
@@ -147,10 +146,10 @@ Site-wide rules should be set here. A general rule here is there should only be 
 
 Example Structure:
 ``` 
-4-base
-  _fonts.scss
-  _global.scss
-  _headings.scss
+base
+  fonts.scss
+  global.scss
+  headings.scss
 ```
 
 Example rules: 
@@ -190,10 +189,10 @@ Reusable objects should be placed here, generally layout structures. **No cosmet
 
 Example Structure:
 ``` 
-5-objects
-  _grids.scss
-  _media.scss
-  _slider.scss
+objects
+  grids.scss
+  media.scss
+  slider.scss
 ```
 
 Example rules: 
@@ -202,18 +201,18 @@ Example rules:
 .media {
     display:block;
 }
-    .media__img {
-        float:left;
-        margin-right:rem($base-spacing-unit);
-    }
-    
-    .media__img--half-spaced {
-        margin-right:rem($base-spacing-unit / 2);
-    }
-    
-    .media__body {
-        overflow:hidden;
-    }
+.media__img {
+	float:left;
+	margin-right:rem($base-spacing-unit);
+}
+
+.media__img--half-spaced {
+	margin-right:rem($base-spacing-unit / 2);
+}
+
+.media__body {
+	overflow:hidden;
+}
 ```
 Since we will be reusing certain components/widgets across many sites with different themes, declaring any cosmetic or unnecessary styles here will inevitably be overwritten, causing waste. To avoid this, use this section to make minimal structures that generally won't change and can be reused across multiple widgets/components/sections. These can be further styled to suit the specific component later in a new file in the components section. (see [my example](#example) below.) 
 
@@ -221,24 +220,22 @@ In theory, once an object is made here, it should rarely need edited again.
 
 
 ## 6. Components
-The majority of the site's styling will go in here. This section may grow quite large depending on the complexity of the site. Keep this import list alphabetical: If import order starts to matter, then something in the structure has went wrong. 
+The majority of the site's styling will go in here. This section may grow quite large depending on the complexity of the site. Keep this import list alphabetical: If import order starts to matter, then something in one (or more) of the components has went wrong. 
 
 Example Structure:
 ``` 
-6-components
-  _breadcrumbs.scss
-  _banner.scss
-  _header.scss
-  _puff.scss
-  templates
-    _contact-page.scss
+components
+  breadcrumbs.scss
+  banner.scss
+  header.scss
+  modal.scss
 ```
 
 **Note:** Components may depend on objects to complete the style, but two components should *rarely* rely on each other as they should be kept as completely seperate entities. If you find that you can extend one component to create a new but similar one, try combining the components into a single one and using modifier flags ('.component**--alt-style**') to differentiate.
 
 ##### Bad
 ``` sass
-// 6-components/_header-navbar.scss
+// components/header-navbar.scss
 .header-navbar {
   height: 60px;
   padding: 10px;
@@ -246,7 +243,7 @@ Example Structure:
   // ...
 }
 
-// 6-components/_footer-navbar.scss
+// components/footer-navbar.scss
 .footer-navbar {
   @extend .header-navbar;
   background-color: green;
@@ -255,7 +252,7 @@ Example Structure:
 
 ##### Good
 ``` sass
-// 6-components/_navbar.scss
+// components/navbar.scss
 .navbar {
   height: 60px;
   padding: 10px;
@@ -273,12 +270,12 @@ Example Structure:
 
 ##### Bad
 ``` sass
-// 6-components/button.scss
+// components/button.scss
 .button {
 	background-color: red;
 }
 
-// 6-components/sidebar.scss
+// components/sidebar.scss
 .sidebar {
   button {
   	background-color: green;
@@ -293,7 +290,7 @@ Example Structure:
 
 ##### Good
 ``` sass
-// 6-components/button.scss
+// components/button.scss
 .button {
 	background-color: red;
 }
@@ -315,14 +312,14 @@ Rules that are added at the very end, generally used for helper classes. These s
 
 Example Structure:
 ``` 
-// 7-utilities
+utilities
   _helper.scss
   _palette.scss
 ```
 
 Example rules: 
 ``` sass
-// 7-utilities/_palette.scss
+// utilities/palette.scss
 .bg-alpha {
   background-color: $palette--primary;
 }
@@ -368,7 +365,7 @@ Classes should be used to style every element where possible. Sass makes it very
 
 ##### Bad
 ``` sass
-// 5-objects/_blocklist.scss
+// objects/_blocklist.scss
 .block-list{
     padding: 0;
     margin: 0;
@@ -388,7 +385,7 @@ The above code gives the 'li' element a high specificity. This means when I come
   <li class="nav__item">Item</li>
 </ul>
 
-// 6-components/_nav.scss
+// components/_nav.scss
 .nav {
   // ...
 }
@@ -407,7 +404,7 @@ Trying to overwrite the padding won't work because '.blocklist li' has a higher 
   <li class="nav__item block-list__item">Item</li>
 </ul>
 
-// 5-objects/_blocklist.scss
+// objects/_blocklist.scss
 .block-list {
   padding: 0;
   margin: 0;
@@ -418,7 +415,7 @@ Trying to overwrite the padding won't work because '.blocklist li' has a higher 
 	padding: 10px;
 }
     
-// 6-components/_nav.scss
+// components/_nav.scss
 .nav {
   // ...
 }
