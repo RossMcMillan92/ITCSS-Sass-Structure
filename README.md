@@ -10,16 +10,25 @@ Along with a basic introduction to ITCSS, this readme will also contain a few ge
 [1. Settings](#1-settings)
   - Variable names
   - Variable units
+  
 [2. Tools](#2-tools)
+
 [3. Generic](#3-generic)
+
 [4. Base](#4-base)
+
 [5. Objects](#5-objects)
+
 [6. Components](#6-components)
+
 [7. Trumps](#7-trumps)
+
 [Example](#example)
   - Avoiding @extend
   - Use of classes
+  
 [Using widgets](#using-widgets)
+
 [Going further](#going-further)
 
 ## Overview
