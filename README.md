@@ -7,6 +7,7 @@ Along with a basic introduction to ITCSS, this readme will also contain a few ge
 
 ## Contents
 [Overview](#overview)
+
 [1. Settings](#1-settings)
   - Variable names
   - Variable units
