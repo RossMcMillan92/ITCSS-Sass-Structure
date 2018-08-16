@@ -87,9 +87,7 @@ When declared in components, it is helpful to manually scope these variables to 
 $modal__max-width: 300px;
 $modal__background-color: $palette-alpha;
 ```
-By doing this, we circumvent (to an extent) the global nature of css. We have to follow some rules:
-
-- **Never** Use a component variable outside of it's own component file. If you need shared variables between components, put the variable in the `settings` layer
+By doing this, we circumvent (to an extent) the global nature of css. **Never** Use a component variable outside of it's own component file. If you need shared variables between components, put the variable in the `settings` layer
 
 #### Bad
 ``` scss
